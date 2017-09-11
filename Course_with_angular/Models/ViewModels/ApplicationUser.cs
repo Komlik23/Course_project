@@ -9,5 +9,6 @@ namespace Course_with_angular.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        string Theme { get; set; }
     }
 }

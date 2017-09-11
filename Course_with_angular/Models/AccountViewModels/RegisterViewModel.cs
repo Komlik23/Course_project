@@ -8,10 +8,17 @@ namespace Course_with_angular.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
+      //  internal string UserName;
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]

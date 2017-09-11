@@ -10,9 +10,11 @@ namespace Course_with_angular.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public  DbSet<Project_Model> Projects { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
