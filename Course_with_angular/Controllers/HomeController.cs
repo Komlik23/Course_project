@@ -20,19 +20,34 @@ namespace Course_with_angular.Controllers
         }
         [Authorize(Roles = "admin,user")]
         public IActionResult Index()
-        {                       
+        {
+            IEnumerable<Project_Model> projects = db.Projects;
+            ViewBag.projects = projects;
             return View();
         }
         [HttpGet]
-        [Authorize(Roles = "admin,user")]
         public IActionResult Project()
         {
-           
             return View();
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin,user")]
+        public IActionResult AddComment(Comment comment)
+        {
+            db.Projects.Find(comment.Id).Comments.Add(comment);
+            db.SaveChanges();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddTarget(Target target)
+        {
+            db.Projects.Find(target.Id).Targets.Add(target);
+            db.SaveChanges();
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Project(string Title, string Description, DateTime DateOfEnd)
         {
 
