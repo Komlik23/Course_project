@@ -18,11 +18,17 @@ namespace Course_with_angular.Controllers
         {
             db = _db;
         }
-        [Authorize(Roles = "admin,user")]
+
         public IActionResult Index()
         {
             IEnumerable<Project_Model> projects = db.Projects;
             ViewBag.projects = projects;
+            int amount = 0;
+            foreach(var project in projects)
+            {
+                amount++;
+            }
+            ViewBag.length = amount;
             return View();
         }
         [HttpGet]

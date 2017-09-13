@@ -7,6 +7,13 @@
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="app\**" />
+    <Content Remove="app\**" />
+    <EmbeddedResource Remove="app\**" />
+    <None Remove="app\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="1.18.1.1" />

@@ -20,42 +20,19 @@
        <h1>We are glad to see you on our website!There are some projects,that may be insteresting for you:)</h1> 
     </div>
     <div class="main-content">
-        @if (ViewBag.projects.length != 0)
+        @if (ViewBag.length != 0)
         {
             @foreach (var project in ViewBag.projects)
             {
                 <div class="item">
-                    <h1>project.Title</h1>
-                    <p>project.DateOfEnd</p>
-                    <div>project.Content</div>
-                    <p>project.Description</p>
+                    <h1>@project.Title</h1>
+                    <p>@project.DateOfEnd</p>
+                    <div>@project.Content</div>
+                    <p>@project.Description</p>
                     <img src="https://www.google.by/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiw5tryv6DWAhVEYJoKHeaPD7gQjRwIBw&url=https%3A%2F%2Fwww.routemybrain.com%2Ftag%2Fproject-management-2%2F&psig=AFQjCNEjQKMGwusuHegM3aarhES6d6NvEQ&ust=1505334968943940" />
-                    <div>
-                        @foreach(var target in project.Targets){
-                            <p>target;</p>
-                        }
-                    </div>
-                    <form action="/Home/AddTarget" method="post">
-                        <input type="hidden" value=project.Id name="Id" />
-                        <input type="hidden" value="RequiresAScript!!!" name="Title" />
-                        <input name="Summ" value="" />
-                        <input type="submit" />
-                    </form>
-                    <div>
-                        @foreach (var comment in project.Comments)
-                        {
-                            <p>target;</p>
-                        }
-                    </div>
-                    <form action="/Home/AddComment" method="post">
-                        <input type="hidden" value=project.Id name="Id"/>
-                        <input type="hidden" value="RequiresAScript!!!" name="Author" />
-                        <input name="Contain" value=""/>
-                        <input type="hidden" name="Time" value="" />
-                        <input type="submit" />
-                    </form>
                     
-                    <div>project.Rate</div>
+                    
+                    <div>@project.Rate</div>
                     
                 </div>
             }
