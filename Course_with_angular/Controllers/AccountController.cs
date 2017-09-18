@@ -12,7 +12,7 @@ using Microsoft.Extensions.Options;
 using Course_with_angular.Models;
 using Course_with_angular.Models.AccountViewModels;
 using Course_with_angular.Services;
-
+using Course_with_angular.Data;
 namespace Course_with_angular.Controllers
 {
     [Authorize]
@@ -24,6 +24,7 @@ namespace Course_with_angular.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
+        //private readonly ApplicationDbContext _db;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -33,6 +34,7 @@ namespace Course_with_angular.Controllers
             ISmsSender smsSender,
             ILoggerFactory loggerFactory)
         {
+            //_db = db;
             _userManager = userManager;
             _signInManager = signInManager;
             _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
@@ -443,9 +445,7 @@ namespace Course_with_angular.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes.
-            // If a user enters incorrect codes for a specified amount of time then the user account
-            // will be locked out for a specified amount of time.
+
             var result = await _signInManager.TwoFactorSignInAsync(model.Provider, model.Code, model.RememberMe, model.RememberBrowser);
             if (result.Succeeded)
             {
@@ -469,6 +469,108 @@ namespace Course_with_angular.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var model = new EditUserViewModel
+            {
+                Id = user.Id,
+                Email = user.Email,
+                IsDeleted = user.IsDeleted,
+                IsValidatedByAdmin = user.IsValidatedByAdmin,
+                Passport = user.Passport
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = await _userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    user.Email = model.Email;
+                    user.UserName = model.Email;
+                    user.IsDeleted = model.IsDeleted;
+                    user.IsValidatedByAdmin = model.IsValidatedByAdmin;
+                    user.Passport = model.Passport;
+
+                    var result = await _userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(string id)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+            }
+            var model = new DeleteUserViewModel
+            {
+                Id = user.Id,
+                Email = user.Email,
+                IsDeleted = user.IsDeleted,
+                IsValidatedByAdmin = user.IsValidatedByAdmin,
+                Passport = user.Passport
+            };
+            return View(model);
+            // return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = await _userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    user.Email = model.Email;
+                    user.UserName = model.Email;
+                    user.IsDeleted = true;
+                    user.IsValidatedByAdmin = model.IsValidatedByAdmin;
+                    user.Passport = model.Passport;
+
+                    var result = await _userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+            }
+            return View(model);
         }
 
         #region Helpers

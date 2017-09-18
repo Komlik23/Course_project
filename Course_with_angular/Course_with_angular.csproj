@@ -5,6 +5,7 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
     <UserSecretsId>aspnet-Course_with_angular-63E4BBB8-BD6E-4A9B-B51C-EDC964A70627</UserSecretsId>
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
   <ItemGroup>
