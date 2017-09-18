@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
@@ -9,13 +9,51 @@
 
   <ItemGroup>
     <Compile Remove="app\**" />
+    <Compile Remove="node_modules\**" />
     <Content Remove="app\**" />
+    <Content Remove="node_modules\**" />
     <EmbeddedResource Remove="app\**" />
+    <EmbeddedResource Remove="node_modules\**" />
     <None Remove="app\**" />
+    <None Remove="node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\.npmignore" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\.nvmrc" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\CHANGELOG.md" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-handler-log\angular-translate-handler-log.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-handler-log\angular-translate-handler-log.min.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-interpolation-messageformat\angular-translate-interpolation-messageformat.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-interpolation-messageformat\angular-translate-interpolation-messageformat.min.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-loader-partial\angular-translate-loader-partial.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-loader-partial\angular-translate-loader-partial.min.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-loader-static-files\angular-translate-loader-static-files.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-loader-static-files\angular-translate-loader-static-files.min.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-loader-url\angular-translate-loader-url.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-loader-url\angular-translate-loader-url.min.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-storage-cookie\angular-translate-storage-cookie.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-storage-cookie\angular-translate-storage-cookie.min.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-storage-local\angular-translate-storage-local.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate-storage-local\angular-translate-storage-local.min.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\dist\angular-translate.min.js" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\LICENSE" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\package.json" />
+    <Content Include="wwwroot\js\angular\node_modules\angular-translate\README.md" />
+    <Content Include="wwwroot\js\app.js" />
+    <Content Include="wwwroot\js\package.json" />
+    <Content Include="wwwroot\lib\bootstrap\nuget\package.json" />
+    <Content Include="wwwroot\lib\package.json" />
+    <Content Include="wwwroot\piccolo\css\site.css" />
+    <Content Include="wwwroot\piccolo\css\site.min.css" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <PackageReference Include="angularjs" Version="1.6.6" />
+    <PackageReference Include="AngularJS.Route" Version="1.6.5" />
+    <PackageReference Include="AngularJS.Sanitize" Version="1.6.5" />
     <PackageReference Include="MailKit" Version="1.18.1.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />

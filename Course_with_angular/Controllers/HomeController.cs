@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Course_with_angular.Data;
 using Course_with_angular.Models;
+using Newtonsoft.Json;
 
 namespace Course_with_angular.Controllers
 {
@@ -17,6 +18,19 @@ namespace Course_with_angular.Controllers
         public HomeController(ApplicationDbContext _db)
         {
             db = _db;
+        }
+        public IActionResult Test()
+        {
+            return View();
+        }
+
+        public object returnLanguage(string lang)
+        {
+            string fileName = @"c:\language" + lang + ".json";
+            string allText = System.IO.File.ReadAllText(fileName);
+
+            object jsonObject = JsonConvert.DeserializeObject(allText);
+            return jsonObject;
         }
 
         public IActionResult Index()

@@ -5,10 +5,10 @@
 }
 <head>
     <style>
-        img{
+        /*img{
             width:300px;
             height:300px;
-        }
+        }*/
         .item{
             display:block;
             float:none;
@@ -19,28 +19,16 @@
     <div class="description">
        <h1>We are glad to see you on our website!There are some projects,that may be insteresting for you:)</h1> 
     </div>
-    <div class="main-content">
-        @if (ViewBag.length != 0)
-        {
-            @foreach (var project in ViewBag.projects)
-            {
-                <div class="item">
-                    <h1>@project.Title</h1>
-                    <p>@project.DateOfEnd</p>
-                    <div>@project.Content</div>
-                    <p>@project.Description</p>
-                    <img src="https://www.google.by/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiw5tryv6DWAhVEYJoKHeaPD7gQjRwIBw&url=https%3A%2F%2Fwww.routemybrain.com%2Ftag%2Fproject-management-2%2F&psig=AFQjCNEjQKMGwusuHegM3aarhES6d6NvEQ&ust=1505334968943940" />
-                    
-                    
-                    <div>@project.Rate</div>
-                    
-                </div>
-            }
-        }
-        else
-        {
-            <p>Sorry,now we have no projects:(</p>
-        }
 
+    <div ng-app="MyApp">
+        <div ng-controller="MyAppController"><p ng-bind-html="template"></p></div>
     </div>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+
+        <div ng-app="myApp" ng-controller="myCtrl">
+
+            <p ng-bind-html="myText"></p>
+
+        </div>
+
