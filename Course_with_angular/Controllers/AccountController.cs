@@ -13,6 +13,8 @@ using Course_with_angular.Models;
 using Course_with_angular.Models.AccountViewModels;
 using Course_with_angular.Services;
 using Course_with_angular.Data;
+using Newtonsoft.Json;
+
 namespace Course_with_angular.Controllers
 {
     [Authorize]
@@ -307,7 +309,7 @@ namespace Course_with_angular.Controllers
                 return View("ForgotPasswordConfirmation");
             }
 
-            // If we got this far, something failed, redisplay form
+
             return View(model);
         }
 
@@ -470,107 +472,42 @@ namespace Course_with_angular.Controllers
         {
             return View();
         }
-
-
-
-        public async Task<IActionResult> Edit(string id)
-        {
-            ApplicationUser user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            var model = new EditUserViewModel
-            {
-                Id = user.Id,
-                Email = user.Email,
-                IsDeleted = user.IsDeleted,
-                IsValidatedByAdmin = user.IsValidatedByAdmin,
-                Passport = user.Passport
-            };
-            return View(model);
-        }
+               
+        
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditUserViewModel model)
+        public async Task<string> Edit(string jsonContent)
         {
-            if (ModelState.IsValid)
-            {
+            var model = JsonConvert.DeserializeObject<EditUserViewModel>(jsonContent);
+            IdentityResult result = null;
+
                 ApplicationUser user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
                     user.Email = model.Email;
                     user.UserName = model.Email;
-                    user.IsDeleted = model.IsDeleted;
                     user.IsValidatedByAdmin = model.IsValidatedByAdmin;
                     user.Passport = model.Passport;
 
-                    var result = await _userManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
+                    result = await _userManager.UpdateAsync(user);
                 }
-            }
-            return View(model);
+           
+            return JsonConvert.SerializeObject(result);
         }
 
+
         [HttpPost]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<string> Delete(string jsonContent)
         {
-            ApplicationUser user = await _userManager.FindByIdAsync(id);
+            var model = JsonConvert.DeserializeObject<DeleteUserViewModel>(jsonContent);
+            ApplicationUser user = await _userManager.FindByIdAsync(model.Id);
+            IdentityResult updateResult = null;
             if (user != null)
             {
-                IdentityResult result = await _userManager.DeleteAsync(user);
+                user.IsDeleted = true;
+                updateResult = await _userManager.UpdateAsync(user);
             }
-            var model = new DeleteUserViewModel
-            {
-                Id = user.Id,
-                Email = user.Email,
-                IsDeleted = user.IsDeleted,
-                IsValidatedByAdmin = user.IsValidatedByAdmin,
-                Passport = user.Passport
-            };
-            return View(model);
-            // return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Delete(EditUserViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                ApplicationUser user = await _userManager.FindByIdAsync(model.Id);
-                if (user != null)
-                {
-                    user.Email = model.Email;
-                    user.UserName = model.Email;
-                    user.IsDeleted = true;
-                    user.IsValidatedByAdmin = model.IsValidatedByAdmin;
-                    user.Passport = model.Passport;
-
-                    var result = await _userManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
-                }
-            }
-            return View(model);
+            return JsonConvert.SerializeObject(updateResult);
         }
 
         #region Helpers

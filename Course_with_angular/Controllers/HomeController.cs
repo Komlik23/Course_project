@@ -14,7 +14,7 @@ namespace Course_with_angular.Controllers
     public class HomeController : Controller
     {
 
-        ApplicationDbContext db ;
+        ApplicationDbContext db;
         public HomeController(ApplicationDbContext _db)
         {
             db = _db;
@@ -38,7 +38,7 @@ namespace Course_with_angular.Controllers
             IEnumerable<Project_Model> projects = db.Projects;
             ViewBag.projects = projects;
             int amount = 0;
-            foreach(var project in projects)
+            foreach (var project in projects)
             {
                 amount++;
             }
@@ -67,22 +67,7 @@ namespace Course_with_angular.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Project(string Title, string Description, DateTime DateOfEnd)
-        {
 
-            Project_Model project = new Project_Model
-            {
-                Title = Title,
-                Description = Description,
-                DateOfEnd = DateOfEnd,
-                Rate = 0
-            };
-            db.Add(project);
-            db.SaveChanges();
-            return View();
-        }
-        
 
         [Authorize(Roles = "admin")]
         public IActionResult About()
