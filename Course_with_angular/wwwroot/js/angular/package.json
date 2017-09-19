@@ -55,6 +55,7 @@
     "angular-cookies": "^1.6.6",
     "angular-route": "^1.6.6",
     "angular-sanitize": "^1.6.6",
-    "angular-translate-loader-static-files": "2.11.1"
+    "angular-translate": "file:node_modules/angular-translate",
+    "angular-translate-loader-static-files": "^2.11.1"
   }
 }
