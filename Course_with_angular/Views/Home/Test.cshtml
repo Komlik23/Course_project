@@ -4,11 +4,9 @@
 }
 
 <!DOCTYPE html>
-<html ng-app="myApp1">
+<html >
 <head>
-    <script src="~/js/angular/node_modules/angular-translate/dist/angular-translate-loader-url/angular-translate-loader-url.js"></script>
-    <script src="~/js/angular/node_modules/angular-translate/dist/angular-translate.js"></script>
-    <script src="~/js/app.js"></script>
+    
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -18,7 +16,7 @@
 
         <div>
             <button ng-click="changeLanguage('en')">English</button>
-            <button ng-click="changeLanguage('sp')">Spanish</button>
+            <button ng-click="changeLanguage('ru')">Русский</button>
         </div>
 
         <h2>{{'language' | translate}}</h2>
