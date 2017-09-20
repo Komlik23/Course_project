@@ -18,8 +18,8 @@ namespace Course_with_angular.Models
         public List<Comment> Comments { get; set; }
         public int Rate { get; set; }
         public string UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser User { get; set; }
+        //[ForeignKey("UserId")]
+        //public virtual ApplicationUser User { get; set; }
                
     }
 }

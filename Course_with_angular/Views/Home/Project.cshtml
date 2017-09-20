@@ -1,20 +1,149 @@
+
 @{
-    Layout = null;
+    ViewData["Title"] = "Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Project</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>{{'Project' | translate}}</title>
-</head>
-<body>
-    <form action="/Home/Project" method="post">
-        <input name="Title" value="" />
-        <input name="Description" value="" />
-        <input name="DateOfEnd" value="" />
-        <input type="submit" />
-    </form>
+
+        <!-- Page Content
+        ================================================== -->
+        <div class="row">
+
+            <!-- Gallery Items
+            ================================================== -->
+            <div class="span12 gallery-single">
+
+                <div class="row">
+                    <div class="span6">
+                        <img src="img/gallery/gallery-img-1-full.jpg" class="align-left thumbnail" alt="image">
+                    </div>
+                    <div class="span6" ng-controller="sendProjectController">
+                        <h2>Let's create your project</h2>
+                        <ul class="project-info ">
+                            <li><h5>Enter the name of project:<input  ng-model="project.Title" type="text" placeholder="Text input" class="pull-right"></h5> </li>
+                            <li><h5 class="textBig">Describe your project:<textarea ng-model="project.Description" class="pull-right"></textarea></h5> </li>
+                            <div class="accordion" id="accordion2">
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                            Describe aim 1
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne" class="accordion-body collapse in">
+                                        <div class="accordion-inner">
+                                            <ul class="project-info">
+                                                <li><h5>Name your aim in two words:<input ng-model="project.Targets.Title" type="text" placeholder="Text input" class="pull-right"></h5> </li>
+                                                <li><h5>Describe your aim :<textarea ng-model="project.Targets.Description" class="pull-right"></textarea></h5> </li>
+                                                <li>
+                                                    <h5>
+                                                        Enter your finance aim:
+                                                        <div class="input-prepend input-append pull-right">
+                                                            <span class="add-on">$</span><input ng-model="project.Targets.Summ" class="span2" id="appendedPrependedInput" size="16" type="text">
+                                                        </div>
+                                                    </h5>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                            Describe aim 2 (+)
+                                        </a>
+                                    </div>
+                                    <div id="collapseTwo" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            <ul class="project-info">
+                                                <li><h5>Name your aim in two words:<input type="text" placeholder="Text input" class="pull-right"></h5> </li>
+                                                <li><h5>Describe your aim :<textarea class="pull-right"></textarea></h5> </li>
+                                                <li>
+                                                    <h5>
+                                                        Enter your finance aim:
+                                                        <div class="input-prepend input-append pull-right">
+                                                            <span class="add-on">$</span><input class="span2" id="appendedPrependedInput" size="16" type="text">
+                                                        </div>
+                                                    </h5>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+                                            Describe aim 3 (+)
+                                        </a>
+                                    </div>
+                                    <div id="collapseThree" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            <ul class="project-info">
+                                                <li><h5>Name your aim in two words:<input type="text" placeholder="Text input" class="pull-right"></h5> </li>
+                                                <li><h5>Describe your aim :<textarea class="pull-right"></textarea></h5> </li>
+                                                <li>
+                                                    <h5>
+                                                        Enter your finance aim:
+                                                        <div class="input-prepend input-append pull-right">
+                                                            <span class="add-on">$</span><input class="span2" id="appendedPrependedInput" size="16" type="text">
+                                                        </div>
+                                                    </h5>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <li><h5>Enter some tags for project:<input type="text" ng-model="project.Targets.Tags" placeholder="Text input" class="pull-right"></h5></li>
+                        </ul>
+                        <button class="btn btn-large btn-warning pull-left" type="submit" ng-click="update(project)">Make a project</button>
+                    </div>
+                </div>
+
+            </div><!-- End gallery-single-->
+
+
+        </div><!-- End container row -->
+
+    </div> <!-- End Container -->
+    <!-- Footer Area
+        ================================================== -->
+    <div class="footer-container">
+        <!-- Begin Footer -->
+        <div class="container">
+            <div class="row footer-row">
+                <div class="span3 footer-col">
+                    <h5>About Us</h5>
+                    <img src="img/piccolo-footer-logo.png" alt="Piccolo" /><br /><br />
+                    <address>
+                        <strong>Design Team</strong><br />
+                        123 Main St, Suite 500<br />
+                        New York, NY 12345<br />
+                    </address>
+
+                </div>
+
+                <div class="row">
+                    <!-- Begin Sub Footer -->
+                    <div class="span12 footer-col footer-sub">
+                        <div class="row no-margin">
+                            <div class="span6"><span class="left">Copyright 2012 Piccolo Theme. All rights reserved.</span></div>
+                            <div class="span6">
+                                <span class="right">
+                                    <a href="#">Home</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Gallery</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Blog</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Contact</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Sub Footer -->
+
+            </div>
+        </div><!-- End Footer -->
+        <!-- Scroll to Top -->
+        <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
 </body>
-</html>
+
+
+

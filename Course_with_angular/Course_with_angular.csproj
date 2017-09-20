@@ -45,8 +45,16 @@
     <Content Include="wwwroot\node_modules\angular\angular-csp.css" />
     <Content Include="wwwroot\node_modules\angular\bower.json" />
     <Content Include="wwwroot\node_modules\angular\package.json" />
-    <Content Include="wwwroot\node_modules\ng-infinite-scroll\bower.json" />
-    <Content Include="wwwroot\node_modules\ng-infinite-scroll\package.json" />
+    <Content Include="wwwroot\node_modules\desandro-matches-selector\bower.json" />
+    <Content Include="wwwroot\node_modules\desandro-matches-selector\package.json" />
+    <Content Include="wwwroot\node_modules\desandro-matches-selector\tests.html" />
+    <Content Include="wwwroot\node_modules\ev-emitter\bower.json" />
+    <Content Include="wwwroot\node_modules\ev-emitter\package.json" />
+    <Content Include="wwwroot\node_modules\ev-emitter\sandbox\1.html" />
+    <Content Include="wwwroot\node_modules\fizzy-ui-utils\bower.json" />
+    <Content Include="wwwroot\node_modules\fizzy-ui-utils\package.json" />
+    <Content Include="wwwroot\node_modules\fizzy-ui-utils\test\index.html" />
+    <Content Include="wwwroot\node_modules\infinite-scroll\package.json" />
     <Content Include="wwwroot\piccolo\css\site.css" />
     <Content Include="wwwroot\piccolo\css\site.min.css" />
   </ItemGroup>
@@ -197,18 +205,32 @@
     <None Include="wwwroot\node_modules\angular\index.js" />
     <None Include="wwwroot\node_modules\angular\LICENSE.md" />
     <None Include="wwwroot\node_modules\angular\README.md" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\.npmignore" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\.travis.yml" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\build\ng-infinite-scroll.js" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\build\ng-infinite-scroll.min.js" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\Gruntfile.coffee" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\LICENSE" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\README.md" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\src\infinite-scroll.coffee" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\test\protractor-local.conf.js" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\test\protractor-shared.conf.js" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\test\protractor-travis.conf.js" />
-    <None Include="wwwroot\node_modules\ng-infinite-scroll\test\spec\ng-infinite-scroll.spec.coffee" />
+    <None Include="wwwroot\node_modules\desandro-matches-selector\.npmignore" />
+    <None Include="wwwroot\node_modules\desandro-matches-selector\matches-selector.js" />
+    <None Include="wwwroot\node_modules\desandro-matches-selector\README.md" />
+    <None Include="wwwroot\node_modules\desandro-matches-selector\tests.js" />
+    <None Include="wwwroot\node_modules\ev-emitter\ev-emitter.js" />
+    <None Include="wwwroot\node_modules\ev-emitter\README.md" />
+    <None Include="wwwroot\node_modules\ev-emitter\test\test.js" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\.npmignore" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\README.md" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\test\unit\.jshintrc" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\test\unit\filter-find-elements.js" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\test\unit\get-parent.js" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\test\unit\html-init.js" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\test\unit\make-array.js" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\test\unit\remove-from.js" />
+    <None Include="wwwroot\node_modules\fizzy-ui-utils\utils.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\dist\infinite-scroll.pkgd.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\dist\infinite-scroll.pkgd.min.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\js\button.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\js\core.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\js\history.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\js\index.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\js\page-load.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\js\scroll-watch.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\js\status.js" />
+    <None Include="wwwroot\node_modules\infinite-scroll\README.md" />
   </ItemGroup>
 
 </Project>

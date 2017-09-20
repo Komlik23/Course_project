@@ -20,3 +20,9 @@
        <h1>We are glad to see you on our website!There are some projects,that may be insteresting for you:)</h1> 
     </div>
 
+    <div  ng-controller='numbersController'>
+        <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+            <img ng-repeat='image in images' ng-src='http://placehold.it/225x250&text={{image}}'>
+        </div>
+    </div>
+

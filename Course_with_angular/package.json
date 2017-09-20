@@ -30,7 +30,9 @@
     "angular-route": "1.6.6",
     "angular-sanitize": "^1.6.6",
     "angular-translate": "2.15.2",
-    "angular-translate-loader-static-files": "^2.11.1"
+    "angular-translate-loader-static-files": "^2.11.1",
+    "infinite-scroll": "3.0.2",
+    "angular-http-service": "1.2.9"
   },
   "devDependencies": {
     "angular": "1.6.6",
