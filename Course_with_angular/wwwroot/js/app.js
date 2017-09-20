@@ -1,9 +1,13 @@
 ﻿
 
 
-var app2 = angular.module("myApp1", ['pascalprecht.translate', 'infinite-scroll']);
+var app = angular.module("course",
+    [
+        'pascalprecht.translate',
+        'ngRoute',
+    ]);
 
-app2.config(["$translateProvider", function ($translateProvider) {
+app.config(["$translateProvider", function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({
         prefix: '../../resources/translation_',
         suffix: '.json'
@@ -13,7 +17,7 @@ app2.config(["$translateProvider", function ($translateProvider) {
 
 }]);
 
-app2.controller("translateController", ["$scope", "$translate", function ($scope, $translate) {
+app.controller("translateController", ["$scope", "$translate", function ($scope, $translate) {
     $scope.changeLanguage = function (lang) {
         $translate.use(lang);
     };
@@ -30,4 +34,4 @@ var numbersController = function ($scope) {
     }
     $scope.loadMore();
 }
-app2.controller('numbersController', numbersController); 
+app.controller('numbersController', numbersController); 
