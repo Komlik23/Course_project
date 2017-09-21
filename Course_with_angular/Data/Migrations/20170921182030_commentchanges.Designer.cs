@@ -8,9 +8,10 @@ using Course_with_angular.Data;
 namespace Course_with_angular.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170921182030_commentchanges")]
+    partial class commentchanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -116,36 +117,6 @@ namespace Course_with_angular.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("Course_with_angular.Models.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tag");
-                });
-
-            modelBuilder.Entity("Course_with_angular.Models.TagLink", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ProjectId");
-
-                    b.Property<int>("TagId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("TagLink");
                 });
 
             modelBuilder.Entity("Course_with_angular.Models.Target", b =>
@@ -284,19 +255,6 @@ namespace Course_with_angular.Data.Migrations
                     b.HasOne("Course_with_angular.Models.Project_Model", "Project")
                         .WithMany("Comments")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Course_with_angular.Models.TagLink", b =>
-                {
-                    b.HasOne("Course_with_angular.Models.Project_Model", "Project")
-                        .WithMany("TagLinks")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Course_with_angular.Models.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -51,24 +51,6 @@ namespace Course_with_angular.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult AddComment(Comment comment)
-        {
-            db.Projects.Find(comment.Id).Comments.Add(comment);
-            db.SaveChanges();
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult AddTarget(Target target)
-        {
-            db.Projects.Find(target.Id).Targets.Add(target);
-            db.SaveChanges();
-            return View();
-        }
-
-
-
         [Authorize(Roles = "admin")]
         public IActionResult About()
         {

@@ -52,7 +52,7 @@ app.controller("sendProjectController", ['$scope',"$http", function ($scope,$htt
         $http({
             headers:{"content-type":"text"}
         })
-        var res = $http.post('/Project/addProject', "jsonContent="+JSON.stringify(jsonContent));
+        var res = $http.post('/Project/addProject', "jsonContent="+JSON.stringify(jsonContent);
         res.success(function (data, status, headers, config) {
             $scope.message = data;
         });

@@ -10,7 +10,13 @@ namespace Course_with_angular.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public  DbSet<Project_Model> Projects { get; set; }
+        public DbSet<Project_Model> Projects { get; set; }
+        public DbSet<Comment> Comment { get; set; }
+        public DbSet<Target> Target { get; set; }
+        public DbSet<Tag> Tag { get; set; }
+        public DbSet<TagLink> TagLink { get; set; }
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
