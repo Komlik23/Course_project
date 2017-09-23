@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Course_with_angular.Models
 {
@@ -17,11 +19,18 @@ namespace Course_with_angular.Models
         public List<Target> Targets { get; set; }
         [JsonIgnore]
         public List<Comment> Comments { get; set; }
-        public int Rate { get; set; }
+        public List<Rate> Rates { get; set; }
+       
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
         [JsonIgnore]
         public List<TagLink> TagLinks { get; set; }
+
+        public double GetRate()
+        {
+            return Rates.Sum(x=>Convert.ToDouble(x)) /Rates.Count ;
+        }
     }
+
 }

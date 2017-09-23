@@ -100,384 +100,388 @@ app.controller("sendProjectController", ['$scope',"$http", function ($scope,$htt
     
 }]);
 
-app.controller('loadUsers', function($scope) {
-    var response
-    $scope.loadUsers = function (id) {
+//app.controller('loadUsers', function($scope) {
+//    var response;
+//    $scope.loadUsers = function (id) {
         
-        var res = $http.get('/Get/GetTopUsers');
-        res.success(function (data, status, headers, config) {
-            response = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+//        var res = $http.get('/Get/GetTopUsers');
+//        res.success(function (data, status, headers, config) {
+//            response = data;
+//            console.log(data)
+//        });
+//        res.error(function (data, status, headers, config) {
+//            alert("failure message: " + JSON.stringify({ data: data }));
+//            response = data;
+//        });
+//    };
 
-    GetUSers;
-    if(response.length>=5){
-        for(var i=0;i<5;i++){
-            $scope.users[i]=response[i]
-        }
-    }
+//    if(response.length>=5){
+//        for(var i=0;i<5;i++){
+//            $scope.users[i]=response[i]
+//        }
+//    }
  
 
-  $scope.loadMore = function() {
-    var last = $scope.users[$scope.users.length - 1];
-    if((response.length-$scope.users.length + 1)>=10){
-        for(var i = 1; i <= 10; i++) {
-            $scope.users.push(response[last + i]);
-        } 
-    }
-    else {
-            for(var i = 1; i <= response.length-1; i++) {
-                $scope.users.push(response[last + i]);
-            } 
-        }
-    }
+//  $scope.loadMore = function() {
+//    var last = $scope.users[$scope.users.length - 1];
+//    if((response.length-$scope.users.length + 1)>=10){
+//        for(var i = 1; i <= 10; i++) {
+//            $scope.users.push(response[last + i]);
+//        } 
+//    }
+//    else {
+//            for(var i = 1; i <= response.length-1; i++) {
+//                $scope.users.push(response[last + i]);
+//            } 
+//        }
+//    }
     
-});
+//});
 
-app.controller('loadNews', function($scope) {
-    var response;
-    $scope.loadTopMoney = function () {
+//app.controller('loadNews', function($scope) {
+//    var response;
+//    $scope.loadTopMoney = function () {
         
-        var res = $http.get('/Get/GetTopNews');
-        res.success(function (data, status, headers, config) {
-            response = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
-    loadTopMoney();
-    if(response.length>=5){
-        for(var i=0;i<5;i++){
-            $scope.news[i]=response[i]
-        }
-    }
+//        var res = $http.get('/Get/GetTopNews');
+//        res.success(function (data, status, headers, config) {
+//            response = data;
+//            console.log(data)
+//        });
+//        res.error(function (data, status, headers, config) {
+//            alert("failure message: " + JSON.stringify({ data: data }));
+//        });
+//    };
+//    loadTopMoney();
+//    if(response.length>=5){
+//        for(var i=0;i<5;i++){
+//            $scope.news[i]=response[i]
+//        }
+//    }
  
 
-  $scope.loadMore = function() {
-    var last = $scope.news[$scope.news.length - 1];
-    if((response.length-$scope.news.length + 1)>=10){
-        for(var i = 1; i <= 10; i++) {
-            $scope.news.push(response[last + i]);
-        } 
-    }
-    else {
-            for(var i = 1; i <= response.length-1; i++) {
-                $scope.users.push(response[last + i]);
-            } 
-        }
-    }
+//  $scope.loadMore = function() {
+//    var last = $scope.news[$scope.news.length - 1];
+//    if((response.length-$scope.news.length + 1)>=10){
+//        for(var i = 1; i <= 10; i++) {
+//            $scope.news.push(response[last + i]);
+//        } 
+//    }
+//    else {
+//            for(var i = 1; i <= response.length-1; i++) {
+//                $scope.users.push(response[last + i]);
+//            } 
+//        }
+//    }
     
-});
+//});
 
-app.controller('loadProjects', function($scope) {
-    var response
-    $scope.loadProjects = function () {
+//app.controller('loadProjects', function($scope) {
+//    var response
+//    $scope.loadProjects = function () {
         
-        var res = $http.get('/Get/GetProjects');
-        res.success(function (data, status, headers, config) {
-            response = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+//        var res = $http.get('/Get/GetProjects');
+//        res.success(function (data, status, headers, config) {
+//            response = data;
+//            console.log(data)
+//        });
+//        res.error(function (data, status, headers, config) {
+//            alert("failure message: " + JSON.stringify({ data: data }));
+//        });
+//    };
 
-    loadProjects();
-    if(response.length>=5){
-        for(var i=0;i<5;i++){
-            $scope.projects[i]=response[i]
-        }
-    }
+//    loadProjects();
+//    if(response.length>=5){
+//        for(var i=0;i<5;i++){
+//            $scope.projects[i]=response[i]
+//        }
+//    }
  
 
-  $scope.loadMore = function() {
-    var last = $scope.projects[$scope.projects.length - 1];
-    if((response.length-$scope.projects.length + 1)>=10){
-        for(var i = 1; i <= 10; i++) {
-             $scope.projects.CommentsAmount=response[last + i].Comments.length;
-            $scope.projects.push(response[last + i]);
-        } 
-    }
-    else {
-            for(var i = 1; i <= response.length-1; i++) {
-                 $scope.projects.CommentsAmount=response[last + i].Comments.length;
-                $scope.projects.push(response[last + i]);
-            } 
-        }
-    }
+//  $scope.loadMore = function() {
+//    var last = $scope.projects[$scope.projects.length - 1];
+//    if((response.length-$scope.projects.length + 1)>=10){
+//        for(var i = 1; i <= 10; i++) {
+//             $scope.projects.CommentsAmount=response[last + i].Comments.length;
+//            $scope.projects.push(response[last + i]);
+//        } 
+//    }
+//    else {
+//            for(var i = 1; i <= response.length-1; i++) {
+//                 $scope.projects.CommentsAmount=response[last + i].Comments.length;
+//                $scope.projects.push(response[last + i]);
+//            } 
+//        }
+//    }
     
-});
+//});
 
-app.controller('loadNewProjects', function($scope) {
-    var response
-    $scope.loadNewProjects = function () {
+//app.controller('loadNewProjects', function($scope) {
+//    var response
+//    $scope.loadNewProjects = function () {
         
-        var res = $http.get('/Get/loadNewProjects');
-        res.success(function (data, status, headers, config) {
-            response = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+//        var res = $http.get('/Get/loadNewProjects');
+//        res.success(function (data, status, headers, config) {
+//            response = data;
+//            console.log(data)
+//        });
+//        res.error(function (data, status, headers, config) {
+//            alert("failure message: " + JSON.stringify({ data: data }));
+//        });
+//    };
 
-    loadNewProjects();
-        if(response.length>=5){
-        for(var i=0;i<5;i++){
-            $scope.projects[i]=response[i]
-        }
-    }
+//    loadNewProjects();
+//        if(response.length>=5){
+//        for(var i=0;i<5;i++){
+//            $scope.projects[i]=response[i]
+//        }
+//    }
  
 
-  $scope.loadMore = function() {
-    var last = $scope.projects[$scope.projects.length - 1];
-    if((response.length-$scope.projects.length + 1)>=10){
-        for(var i = 1; i <= 10; i++) {
-            $scope.projects.CommentsAmount=response[last + i].Comments.length;
-            $scope.projects.push(response[last + i]);
-        } 
-    }
-    else {
-            for(var i = 1; i <= response.length-1; i++) {
-                 $scope.projects.CommentsAmount=response[last + i].Comments.length;
-                $scope.projects.push(response[last + i]);
-            } 
-        }
-    }
+//  $scope.loadMore = function() {
+//    var last = $scope.projects[$scope.projects.length - 1];
+//    if((response.length-$scope.projects.length + 1)>=10){
+//        for(var i = 1; i <= 10; i++) {
+//            $scope.projects.CommentsAmount=response[last + i].Comments.length;
+//            $scope.projects.push(response[last + i]);
+//        } 
+//    }
+//    else {
+//            for(var i = 1; i <= response.length-1; i++) {
+//                 $scope.projects.CommentsAmount=response[last + i].Comments.length;
+//                $scope.projects.push(response[last + i]);
+//            } 
+//        }
+//    }
     
-});
+//});
 
 app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
-    $scope.loadMore = function () {
+    //$scope.loadMore = function () {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
 
-    $scope.loadTopMoney = function () {
+    //$scope.loadTopMoney = function () {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.loadNewProjects = function () {
+    //$scope.loadNewProjects = function () {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
     
-    $scope.loadTopProjects = function () {
+    //$scope.loadTopProjects = function () {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
    
 
-    $scope.getTags = function () {
+    //$scope.getTags = function () {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.deleteUser = function (id) {
+    //$scope.deleteUser = function (id) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.confirmUser = function (id) {
+    //$scope.confirmUser = function (id) {
         
-        var res = $http.get('/Project/addProject').then(
-            function (data, status, headers, config) {
-                $scope.message = data;
-                console.log(data)
-            },
-            function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({ data: data }));
-            }
-        )
+    //    var res = $http.get('/Project/addProject').then(
+    //        function (data, status, headers, config) {
+    //            $scope.message = data;
+    //            console.log(data)
+    //        },
+    //        function (data, status, headers, config) {
+    //            alert("failure message: " + JSON.stringify({ data: data }));
+    //        }
+    //    )
         
-    };
+    //};
 
-    $scope.blockUser = function (id) {
+    //$scope.blockUser = function (id) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.passConfirmation = function (confirmation) {
+    //$scope.passConfirmation = function (confirmation) {
         
-        var res = $http.post('/Project/addProject',data);
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.post('/Project/addProject',data);
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.getProject = function (title) {
+    //$scope.getProject = function (title) {
         
-        var res = $http.get('../api/GetProject?id=1').then(
-            function (data, status, headers, config) {
-                $scope.message = data;
-                console.log(data)
-            },
-            function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({ data: data }));
-            }
-        )
+    //    var res = $http.get('../api/GetProject?id=1').then(
+    //        function (data, status, headers, config) {
+    //            $scope.message = data;
+    //            console.log(data)
+    //        },
+    //        function (data, status, headers, config) {
+    //            alert("failure message: " + JSON.stringify({ data: data }));
+    //        }
+    //    )
         
-    };
+    //};
 
     $scope.setRate = function (rate) {
-        
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
+        var userId = rate * 3;
+        var projectId = 2004;
+        console.log(rate)
+        var res = $http.get('../Project/SetRate?ProjectId=' + projectId + "&UserId=" + userId + "&rate=" + rate).then(
+            function (data, status, headers, config) {
+                $scope.message = data;
+                console.log(data)
+            },
+            function (data, status, headers, config) {
+                alert("failure message: " + JSON.stringify({ data: data }));
+            }
+        )
+
     };
 
-    $scope.setStatus = function (status) {
+    //$scope.setStatus = function (status) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.addComment = function (comment) {
+    //$scope.addComment = function (comment) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.pay = function (payment) {
+    //$scope.pay = function (payment) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.subscribe = function (id) {
+    //$scope.subscribe = function (id) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.setColor = function (color) {
+    //$scope.setColor = function (color) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.setLanguage = function (language) {
+    //$scope.setLanguage = function (language) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
-    $scope.sendQuery = function (query) {
+    //$scope.sendQuery = function (query) {
         
-        var res = $http.get('/Project/addProject');
-        res.success(function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        });
-    };
+    //    var res = $http.get('/Project/addProject');
+    //    res.success(function (data, status, headers, config) {
+    //        $scope.message = data;
+    //        console.log(data)
+    //    });
+    //    res.error(function (data, status, headers, config) {
+    //        alert("failure message: " + JSON.stringify({ data: data }));
+    //    });
+    //};
 
     
 }]);

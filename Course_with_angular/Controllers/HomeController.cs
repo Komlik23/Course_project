@@ -66,13 +66,13 @@ namespace Course_with_angular.Controllers
             return JsonConvert.SerializeObject(ResultModel.Success());
         }
 
-        [HttpGet("[action]")]
-        public IActionResult GetProject(int id)
+        [HttpGet]
+        public string GetProject(int id)
         {
             var project = FindProjectById(id);
             ViewBag.project = project;
-            //return JsonConvert.SerializeObject(project);
-            return View();
+            return JsonConvert.SerializeObject(project);
+            
         }
 
         [HttpGet]

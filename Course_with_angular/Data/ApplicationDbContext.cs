@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Course_with_angular.Models;
+using System.Collections;
 
 namespace Course_with_angular.Data
 {
@@ -15,6 +16,7 @@ namespace Course_with_angular.Data
         public DbSet<Target> Target { get; set; }
         public DbSet<Tag> Tag { get; set; }
         public DbSet<TagLink> TagLink { get; set; }
+        public DbSet<Rate> Rates { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
