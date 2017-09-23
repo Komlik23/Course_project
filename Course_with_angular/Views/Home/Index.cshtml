@@ -132,16 +132,27 @@
     <button ng-click="setRate(rate)" value="setRate">setRate</button>
 
 
-     @*<input type="text" ng-model="UserStatus">
+     <input type="text" ng-model="UserStatus">
     <button ng-click="setStatus(UserStatus)" value="setStatus"/>
+
+
+    public int Id { get; set; }
+        public string Author { get; set; }
+        public DateTime Time { get; set; }
+        public string Contain { get; set; }
+        public int ProjectId { get; set; }
+
+
     <form>
+        <input type='hidden' ng-model='comment.ProjectId' value="2004">
         <div class="span6">
-                    <form><p><textarea name="textarea" class="span6" ng-model="comment.Text"></textarea></p></form>
+                    <form><p><textarea name="textarea" class="span6" ng-model="comment.Contain"></textarea></p></form>
                 </div>
                 <div class="span6"> 
                     <button class="btn btn-large " type="button" ng-click="addComment(comment)">Add comment</button>
                 </div>
     </form>
+    @*
     <input type="text" ng-model="payment.sum">
     <button ng-click="pay(payment)" value="pay"/>
     <input type="text" ng-model="id"/>

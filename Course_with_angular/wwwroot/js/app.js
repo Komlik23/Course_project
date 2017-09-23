@@ -411,17 +411,19 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
     //    });
     //};
 
-    //$scope.addComment = function (comment) {
-        
-    //    var res = $http.get('/Project/addProject');
-    //    res.success(function (data, status, headers, config) {
-    //        $scope.message = data;
-    //        console.log(data)
-    //    });
-    //    res.error(function (data, status, headers, config) {
-    //        alert("failure message: " + JSON.stringify({ data: data }));
-    //    });
-    //};
+    $scope.addComment = function (comment) {
+        comment.Time=new Date().format('MM/DD/YYYY h:mm a');
+        comment.Author="1234";
+        console.log(comment)
+       var res = $http.post('../Project/AddComment',JSON.stringify(comment));
+       res.success(function (data, status, headers, config) {
+           $scope.message = data;
+           console.log(data)
+       });
+       res.error(function (data, status, headers, config) {
+           alert("failure message: " + JSON.stringify({ data: data }));
+       });
+    };
 
     //$scope.pay = function (payment) {
         
