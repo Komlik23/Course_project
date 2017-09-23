@@ -40,17 +40,17 @@ app.controller('numbersController', numbersController);
 
 app.controller("sendProjectController", ['$scope',"$http", function ($scope,$http) {
     $scope.update = function (project) {
-        $scope.project.Id = 12345675;
-        $scope.project.DateOfEnd = Date.parse("20.07.2015 0:00:00");
-        $scope.project.Content = "dfsbsg";
+        $scope.project.Id = 2323;
+        $scope.project.DateOfEnd = "2012-04-23T18:25:43.511Z";
+        $scope.project.Content = "drew";
         $scope.project.Comments = [];
         $scope.project.Rate = 0;
-        $scope.project.UserId = 1243515;
+        $scope.project.UserId = "15454";
         $scope.project.ImageReference = "dsfbgws";
         jsonContent = angular.copy(project);
         console.log(jsonContent)
         
-        var res = $http.post('../api/AddProject',  JSON.stringify( {jsonContent:jsonContent}) ).then(
+        var res = $http.post('AddProject',  JSON.stringify( jsonContent) ).then(
             function (data, status, headers, config) {
                 $scope.message = data;
                 console.log(data)

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Course_with_angular.Data;
 using Course_with_angular.Models;
 using Newtonsoft.Json;
+using Course_with_angular.Utils;
 
 namespace Course_with_angular.Controllers
 {
@@ -15,10 +16,86 @@ namespace Course_with_angular.Controllers
     {
 
         ApplicationDbContext db;
+        private const int PageSize = 25;
         public HomeController(ApplicationDbContext _db)
         {
             db = _db;
         }
+
+        [HttpPost]
+        public string AddProject()
+        {
+
+            try
+            {
+                string jsonContent = this.GetJson();
+                Project_Model project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
+                project.UserId = "56";
+                db.Add(project);
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                JsonConvert.SerializeObject(ResultModel.Failure(e.Message));
+            }
+            
+            return JsonConvert.SerializeObject(ResultModel.Success());
+        }
+
+        [HttpGet]
+        public string Delete(int id)
+        {
+            try
+            {
+                var project = db.Projects.FirstOrDefault(item => item.Id == id);
+                db.Remove(project);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                JsonConvert.SerializeObject(ResultModel.Failure(e.Message));
+            }
+            return JsonConvert.SerializeObject(ResultModel.Success());
+        }
+
+        [HttpPost]
+        public string Edit(string jsonContent)
+        {
+            try
+            {
+                var project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
+                db.Update(project);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return JsonConvert.SerializeObject(ResultModel.Failure(e.Message));
+            }
+            return JsonConvert.SerializeObject(ResultModel.Success());
+        }
+
+        [HttpGet("[action]")]
+        public IActionResult GetProject(int id)
+        {
+            var project = FindProjectById(id);
+            ViewBag.project = project;
+            //return JsonConvert.SerializeObject(project);
+            return View();
+        }
+
+        [HttpGet]
+        public string GetProjects(int page)
+        {
+            var project = db.Projects.Skip((page - 1) * PageSize).Take(PageSize);
+            return JsonConvert.SerializeObject(project);
+        }
+
+        private Project_Model FindProjectById(int id)
+        {
+            return db.Projects.FirstOrDefault(item => item.Id == id);
+        }
+
+
 
         public IActionResult Profile()
         {

@@ -55,6 +55,8 @@
     <Content Include="wwwroot\node_modules\fizzy-ui-utils\package.json" />
     <Content Include="wwwroot\node_modules\fizzy-ui-utils\test\index.html" />
     <Content Include="wwwroot\node_modules\infinite-scroll\package.json" />
+    <Content Include="wwwroot\node_modules\ng-infinite-scroll\bower.json" />
+    <Content Include="wwwroot\node_modules\ng-infinite-scroll\package.json" />
     <Content Include="wwwroot\piccolo\css\site.css" />
     <Content Include="wwwroot\piccolo\css\site.min.css" />
   </ItemGroup>
@@ -231,6 +233,18 @@
     <None Include="wwwroot\node_modules\infinite-scroll\js\scroll-watch.js" />
     <None Include="wwwroot\node_modules\infinite-scroll\js\status.js" />
     <None Include="wwwroot\node_modules\infinite-scroll\README.md" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\.npmignore" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\.travis.yml" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\build\ng-infinite-scroll.js" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\build\ng-infinite-scroll.min.js" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\Gruntfile.coffee" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\LICENSE" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\README.md" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\src\infinite-scroll.coffee" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\test\protractor-local.conf.js" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\test\protractor-shared.conf.js" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\test\protractor-travis.conf.js" />
+    <None Include="wwwroot\node_modules\ng-infinite-scroll\test\spec\ng-infinite-scroll.spec.coffee" />
   </ItemGroup>
 
 </Project>
