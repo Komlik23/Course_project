@@ -1,0 +1,198 @@
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container main-container">
+
+    <div class="row header">
+        <!-- Begin Header -->
+        <!-- Logo
+        ================================================== -->
+        <div class="span5 logo">
+            <a href="index.htm"><img src="img/piccolo-logo.png" alt="" /></a>
+            <h5>Big Things... Small Packages</h5>
+        </div>
+
+        <!-- Main Navigation
+        ================================================== -->
+        <div class="span7 navigation">
+            <div class="navbar hidden-phone">
+
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="index.htm">Home <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.htm">Full Page</a></li>
+                            <li><a href="index-gallery.htm">Gallery Only</a></li>
+                            <li><a href="index-slider.htm">Slider Only</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="features.htm">Features</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="page-full-width.htm">Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page-full-width.htm">Full Width</a></li>
+                            <li><a href="page-right-sidebar.htm">Right Sidebar</a></li>
+                            <li><a href="page-left-sidebar.htm">Left Sidebar</a></li>
+                            <li><a href="page-double-sidebar.htm">Double Sidebar</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="gallery-4col.htm">Gallery <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery-3col.htm">Gallery 3 Column</a></li>
+                            <li><a href="gallery-4col.htm">Gallery 4 Column</a></li>
+                            <li><a href="gallery-6col.htm">Gallery 6 Column</a></li>
+                            <li><a href="gallery-4col-circle.htm">Gallery 4 Round</a></li>
+                            <li><a href="gallery-single.htm">Gallery Single</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="blog-style1.htm">Blog <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog-style1.htm">Blog Style 1</a></li>
+                            <li><a href="blog-style2.htm">Blog Style 2</a></li>
+                            <li><a href="blog-style3.htm">Blog Style 3</a></li>
+                            <li><a href="blog-style4.htm">Blog Style 4</a></li>
+                            <li><a href="blog-single.htm">Blog Single</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="page-contact.htm">Contact</a></li>
+                </ul>
+
+            </div>
+
+            <!-- Mobile Nav
+            ================================================== -->
+            <form action="#" id="mobile-nav" class="visible-phone">
+                <div class="mobile-nav-select">
+                    <select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
+                        <option value="">Navigate...</option>
+                        <option value="index.htm">Home</option>
+                        <option value="index.htm">- Full Page</option>
+                        <option value="index-gallery.htm">- Gallery Only</option>
+                        <option value="index-slider.htm">- Slider Only</option>
+                        <option value="features.htm">Features</option>
+                        <option value="page-full-width.htm">Pages</option>
+                        <option value="page-full-width.htm">- Full Width</option>
+                        <option value="page-right-sidebar.htm">- Right Sidebar</option>
+                        <option value="page-left-sidebar.htm">- Left Sidebar</option>
+                        <option value="page-double-sidebar.htm">- Double Sidebar</option>
+                        <option value="gallery-4col.htm">Gallery</option>
+                        <option value="gallery-3col.htm">- 3 Column</option>
+                        <option value="gallery-4col.htm">- 4 Column</option>
+                        <option value="gallery-6col.htm">- 6 Column</option>
+                        <option value="gallery-4col-circle.htm">- Gallery 4 Col Round</option>
+                        <option value="gallery-single.htm">- Gallery Single</option>
+                        <option value="blog-style1.htm">Blog</option>
+                        <option value="blog-style1.htm">- Blog Style 1</option>
+                        <option value="blog-style2.htm">- Blog Style 2</option>
+                        <option value="blog-style3.htm">- Blog Style 3</option>
+                        <option value="blog-style4.htm">- Blog Style 4</option>
+                        <option value="blog-single.htm">- Blog Single</option>
+                        <option value="page-contact.htm">Contact</option>
+                    </select>
+                </div>
+            </form>
+
+        </div>
+
+    </div><!-- End Header -->
+    <!-- Blog Content
+    ================================================== -->
+    <div class="row">
+        <!--Container row-->
+        <!-- Blog Full Post
+        ================================================== -->
+        <div class="span8 blog">
+
+            <!-- Blog Post 1 -->
+            <h4 class="title-bg"><a name="comments"></a>Profile</h4>
+
+            <!-- About the Author -->
+            <section class="post-content">
+                <div class="post-body about-author">
+                    <img src="img/author-avatar.jpg" alt="author">
+                    <h4>Nathan Brown</h4>
+                    Some very interesting information about user
+                </div>
+                <p></p>
+                <ul class="project-info ">
+                    <li><h6>Email:</h6> dfsdj@gmail.com</li>
+                    <li><h6>Registration date:</h6> 22.22.22</li>
+                    <li><h6>Status:</h6> confirmed</li>
+                    <li><h6>Number of projects:</h6> MMM</li>
+                    <li><h6>Projects:</h6> </li>
+                </ul>
+                <ul class="popular-posts">
+                    <li>
+                        <p class="span2"></p>
+                        <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                        <h6><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h6>
+                        <em>Posted on 09/01/15</em>
+                    </li>
+                    <li>
+                        <p class="span2"></p>
+                        <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                        <h6><a href="#">Nulla iaculis mattis lorem, quis gravida nunc iaculis</a></h6>
+                        <em>Posted on 09/01/15</em>
+                    <li>
+                        <p class="span2"></p>
+                        <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                        <h6><a href="#">Vivamus tincidunt sem eu magna varius elementum maecenas felis</a></h6>
+                        <em>Posted on 09/01/15</em>
+                    </li>
+                </ul>
+
+
+            </section>
+
+            <!-- Post Comments
+            ================================================== -->
+            <!-- Comment Form -->
+
+
+        </div><!--Close container row-->
+        <!-- Blog Sidebar
+        ================================================== -->
+        <div class="span4 sidebar blog">
+            <p class="span4"></p>
+            <p class="span4"></p>
+            <p class="span4"></p>
+            <p class="span4"></p>
+
+
+            <!--Search-->
+            <div class="row">
+                <h4 class="span2">Choose theme </h4>
+                <button class="btn pull-right span1 " type="button">Light</button>
+                <button class="btn btn-inverse pull-right span1" type="button">Dark</button>
+            </div>
+            <div class="row">
+                <h4 class="span2">Choose language </h4>
+                <p class="span2">
+                    <select class="selectpicker span2">
+                        <option>English</option>
+                        <option>Russian</option>
+                    </select>
+                </p>
+            </div>
+            <div class="row">
+                <h4 class="span2">Verify registration </h4>
+                <button class="btn pull-right span1 " type="button">Form</button>
+            </div>
+            <div class="row">
+                <h4 class="span2">Make new project </h4>
+                <button class="btn pull-right span1 " type="button">project</button>
+            </div>
+
+            <!--Popular Posts-->
+            <!--Tabbed Content-->
+        </div>
+
+    </div>
+
+</div> 
+

@@ -1,7 +1,6 @@
 
 @{
     ViewData["Title"] = "Project";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Project</h2>
@@ -14,92 +13,94 @@
             <!-- Gallery Items
             ================================================== -->
             <div class="span12 gallery-single">
+                <form  action="../Project/AddProject"  method="post" class="form-horizontal">       
+                    <input type="hidden" value="@ViewBag.UserId" name="BookId" />
+                    <div class="row">
+                        <div class="span6">
+                            <img src="img/gallery/gallery-img-1-full.jpg" class="align-left thumbnail" alt="image">
+                        </div>
+                        <div class="span6" ng-controller="sendProjectController">
+                            <h2>Let's create your project</h2>
+                            <ul class="project-info ">
+                                <li><h5>Enter the name of project:<input name="Title" ng-model="project.Title" type="text" placeholder="Text input" class="pull-right"></h5> </li>
+                                <li><h5 class="textBig">Describe your project:<textarea name="Content" ng-model="project.Description" class="pull-right"></textarea></h5> </li>
+                                <div class="accordion" id="accordion2">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                                Describe aim 1
+                                            </a>
+                                        </div>
+                                        <div id="collapseOne" class="accordion-body collapse in">
+                                            <div class="accordion-inner">
+                                                <ul class="project-info">
+                                                    <li><h5>Name your aim in two words:<input ng-model="project.Targets.Title" type="text" placeholder="Text input" class="pull-right"></h5> </li>
+                                                    <li><h5>Describe your aim :<textarea ng-model="project.Targets.Description" class="pull-right"></textarea></h5> </li>
+                                                    <li>
+                                                        <h5>
+                                                            Enter your finance aim:
+                                                            <div class="input-prepend input-append pull-right">
+                                                                <span class="add-on">$</span><input ng-model="project.Targets.Summ" class="span2" id="appendedPrependedInput" size="16" type="text">
+                                                            </div>
+                                                        </h5>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <div class="row">
-                    <div class="span6">
-                        <img src="img/gallery/gallery-img-1-full.jpg" class="align-left thumbnail" alt="image">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                                Describe aim 2 (+)
+                                            </a>
+                                        </div>
+                                        <div id="collapseTwo" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                <ul class="project-info">
+                                                    <li><h5>Name your aim in two words:<input type="text" placeholder="Text input" class="pull-right"></h5> </li>
+                                                    <li><h5>Describe your aim :<textarea class="pull-right"></textarea></h5> </li>
+                                                    <li>
+                                                        <h5>
+                                                            Enter your finance aim:
+                                                            <div class="input-prepend input-append pull-right">
+                                                                <span class="add-on">$</span><input class="span2" id="appendedPrependedInput" size="16" type="text">
+                                                            </div>
+                                                        </h5>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+                                                Describe aim 3 (+)
+                                            </a>
+                                        </div>
+                                        <div id="collapseThree" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                <ul class="project-info">
+                                                    <li><h5>Name your aim in two words:<input type="text" placeholder="Text input" class="pull-right"></h5> </li>
+                                                    <li><h5>Describe your aim :<textarea class="pull-right"></textarea></h5> </li>
+                                                    <li>
+                                                        <h5>
+                                                            Enter your finance aim:
+                                                            <div class="input-prepend input-append pull-right">
+                                                                <span class="add-on">$</span><input class="span2" id="appendedPrependedInput" size="16" type="text">
+                                                            </div>
+                                                        </h5>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li><h5>Enter some tags for project:<input name="Tags" type="text" ng-model="project.Targets.Tags" placeholder="Text input" class="pull-right"></h5></li>
+                            </ul>
+                            <button class="btn btn-large btn-warning pull-left" type="submit" ng-click="update(project)">Make a project</button>
+                        </div>
                     </div>
-                    <div class="span6" ng-controller="sendProjectController">
-                        <h2>Let's create your project</h2>
-                        <ul class="project-info ">
-                            <li><h5>Enter the name of project:<input  ng-model="project.Title" type="text" placeholder="Text input" class="pull-right"></h5> </li>
-                            <li><h5 class="textBig">Describe your project:<textarea ng-model="project.Description" class="pull-right"></textarea></h5> </li>
-                            <div class="accordion" id="accordion2">
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                                            Describe aim 1
-                                        </a>
-                                    </div>
-                                    <div id="collapseOne" class="accordion-body collapse in">
-                                        <div class="accordion-inner">
-                                            <ul class="project-info">
-                                                <li><h5>Name your aim in two words:<input ng-model="project.Targets.Title" type="text" placeholder="Text input" class="pull-right"></h5> </li>
-                                                <li><h5>Describe your aim :<textarea ng-model="project.Targets.Description" class="pull-right"></textarea></h5> </li>
-                                                <li>
-                                                    <h5>
-                                                        Enter your finance aim:
-                                                        <div class="input-prepend input-append pull-right">
-                                                            <span class="add-on">$</span><input ng-model="project.Targets.Summ" class="span2" id="appendedPrependedInput" size="16" type="text">
-                                                        </div>
-                                                    </h5>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                                            Describe aim 2 (+)
-                                        </a>
-                                    </div>
-                                    <div id="collapseTwo" class="accordion-body collapse">
-                                        <div class="accordion-inner">
-                                            <ul class="project-info">
-                                                <li><h5>Name your aim in two words:<input type="text" placeholder="Text input" class="pull-right"></h5> </li>
-                                                <li><h5>Describe your aim :<textarea class="pull-right"></textarea></h5> </li>
-                                                <li>
-                                                    <h5>
-                                                        Enter your finance aim:
-                                                        <div class="input-prepend input-append pull-right">
-                                                            <span class="add-on">$</span><input class="span2" id="appendedPrependedInput" size="16" type="text">
-                                                        </div>
-                                                    </h5>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
-                                            Describe aim 3 (+)
-                                        </a>
-                                    </div>
-                                    <div id="collapseThree" class="accordion-body collapse">
-                                        <div class="accordion-inner">
-                                            <ul class="project-info">
-                                                <li><h5>Name your aim in two words:<input type="text" placeholder="Text input" class="pull-right"></h5> </li>
-                                                <li><h5>Describe your aim :<textarea class="pull-right"></textarea></h5> </li>
-                                                <li>
-                                                    <h5>
-                                                        Enter your finance aim:
-                                                        <div class="input-prepend input-append pull-right">
-                                                            <span class="add-on">$</span><input class="span2" id="appendedPrependedInput" size="16" type="text">
-                                                        </div>
-                                                    </h5>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <li><h5>Enter some tags for project:<input type="text" ng-model="project.Targets.Tags" placeholder="Text input" class="pull-right"></h5></li>
-                        </ul>
-                        <button class="btn btn-large btn-warning pull-left" type="submit" ng-click="update(project)">Make a project</button>
-                    </div>
-                </div>
+                </form>
 
             </div><!-- End gallery-single-->
 

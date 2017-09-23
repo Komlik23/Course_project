@@ -8,9 +8,10 @@ using Course_with_angular.Data;
 namespace Course_with_angular.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170921074121_ApplicationUser removed from Project model")]
+    partial class ApplicationUserremovedfromProjectmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -83,13 +84,13 @@ namespace Course_with_angular.Data.Migrations
 
                     b.Property<string>("Contain");
 
-                    b.Property<int>("ProjectId");
+                    b.Property<int?>("Project_ModelId");
 
                     b.Property<DateTime>("Time");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("Project_ModelId");
 
                     b.ToTable("Comment");
                 });
@@ -115,39 +116,7 @@ namespace Course_with_angular.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("Course_with_angular.Models.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tag");
-                });
-
-            modelBuilder.Entity("Course_with_angular.Models.TagLink", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ProjectId");
-
-                    b.Property<int>("TagId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("TagLink");
                 });
 
             modelBuilder.Entity("Course_with_angular.Models.Target", b =>
@@ -283,30 +252,9 @@ namespace Course_with_angular.Data.Migrations
 
             modelBuilder.Entity("Course_with_angular.Models.Comment", b =>
                 {
-                    b.HasOne("Course_with_angular.Models.Project_Model", "Project")
+                    b.HasOne("Course_with_angular.Models.Project_Model")
                         .WithMany("Comments")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Course_with_angular.Models.Project_Model", b =>
-                {
-                    b.HasOne("Course_with_angular.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Course_with_angular.Models.TagLink", b =>
-                {
-                    b.HasOne("Course_with_angular.Models.Project_Model", "Project")
-                        .WithMany("TagLinks")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Course_with_angular.Models.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("Project_ModelId");
                 });
 
             modelBuilder.Entity("Course_with_angular.Models.Target", b =>

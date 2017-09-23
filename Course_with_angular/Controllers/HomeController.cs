@@ -19,6 +19,12 @@ namespace Course_with_angular.Controllers
         {
             db = _db;
         }
+
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
         public IActionResult Test()
         {
             return View();

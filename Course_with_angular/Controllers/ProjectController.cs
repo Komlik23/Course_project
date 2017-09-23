@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Course_with_angular.Controllers
 {
+    [Route("api/")]
     public class ProjectController: Controller
     {
         private const int PageSize = 25;
@@ -19,13 +20,12 @@ namespace Course_with_angular.Controllers
             db = _db;
         }
 
-        [HttpPost]
-        public string AddProject(string jsonContent)
+        [HttpPost("[action]")]
+        public IActionResult AddProject( Project_Model project)
         {
-            var project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
             db.Add(project);
             db.SaveChanges();
-            return JsonConvert.SerializeObject(project);
+            return View();
         }
 
         [HttpGet]
@@ -60,11 +60,13 @@ namespace Course_with_angular.Controllers
             return JsonConvert.SerializeObject(ResultModel.Success());
         }
 
-        [HttpGet]
-        public string GetProject(int id)
+        [HttpGet("[action]")]
+        public IActionResult GetProject(int id)
         {
             var project = FindProjectById(id);
-            return JsonConvert.SerializeObject(project);
+            ViewBag.project = project;
+            //return JsonConvert.SerializeObject(project);
+            return View();
         }
 
         [HttpGet]

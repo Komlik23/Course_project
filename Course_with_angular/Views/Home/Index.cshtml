@@ -16,9 +16,93 @@
     </style>
 </head>
 <body>
-    <div class="description">
-       <h1>We are glad to see you on our website!There are some projects,that may be insteresting for you:)</h1> 
+    
+    <!-- Blog Content
+
+    ================================================== --> 
+
+    <div class="row">
+
+        <!-- Blog Posts
+        ================================================== --> 
+        <div class="span4 ">
+            <h5 class="title-bg">Popular Users</h5>
+            <ul class="popular-posts" ng-controller="loadUsers">
+                <li ng-repeat='user in users'>
+                    <a href="/Project/GetUser?id="+user.Id><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                    <h6>user.Name</h6>
+                    <em>user.Rate<em>
+                    <h6>user.ProjectsAmount</h6>
+                </li>
+            </ul>
+
+            <!--Tabbed Content-->
+        </div>
+
+        <div class="span4 ">
+            <h5 class="title-bg">News</h5>
+            <ul class="popular-posts" ng-controller="loadPosts">
+                <li ng-repeat='fact in news'>
+                    <a href="/Project/GetProject?id="+fact.Id><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                    <h6>fact.Content</h6>
+                    <em>fact.Date</em>
+                </li>
+            </ul>
+
+            <!--Tabbed Content-->
+        </div>
+        <div class="span8 blog" ng-controller='loadProjects'>
+            <h4 class="title-bg span12">TOP-5 OUR PROJECTS</h4>
+            
+            <!-- Blog Post 1 -->
+            <article ng-repear='project in projects' class="clearfix">
+
+                <a href="/Project/GetProject?id="+project.Id><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
+                <h5 class="title-bg">project.Title</h5>
+                    <p>Project.Content</p>
+                    <button class="btn btn-mini btn-inverse" type="button" >Read more</button>
+                    <div class="post-summary-footer">
+                        <ul class="post-data-3">
+                            <li><i class="icon-calendar"></i>project.Date</li>
+                            <li><i class="icon-user"></i> <a href="#">project.User.Name</a></li>
+                            <li><i class="icon-comment"></i>{{CommentsAmount}}</li>
+                            <li><i class="icon-tags"></i><i ng-repeat='tag in tags'>tag.Text</i></li>
+                        </ul>
+                    </div>
+            </article>
+
+           
+
+           
+        <div class="span8 blog" ng-controller='loadNewProjects'>
+            <h4 class="title-bg span12">OUR NEW PROJECTS</h4>
+                <article ng-repear='project in projects' class="clearfix">
+                    <a href="/Project/GetProject?id="+project.Id><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
+                    <h5 class="title-bg">project.Title</h5>
+                    <p>Project.Content</p>
+                    <button class="btn btn-mini btn-inverse" type="button" >Read more</button>
+                    <div class="post-summary-footer">
+                        <ul class="post-data-3">
+                            <li><i class="icon-calendar"></i>project.Date</li>
+                            <li><i class="icon-user"></i> <a href="#">project.User.Name</a></li>
+                            <li><i class="icon-comment"></i>{{CommentsAmount}}</li>
+                            <li><i class="icon-tags"></i><i ng-repeat='tag in tags'>tag.Text</i></li>
+                        </ul>
+                    </div>
+            </article>
+            <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(projects)" >View more</button>
+        </div>
+
+        <!-- Blog Sidebar
+        ================================================== --> 
+
     </div>
+    
+    </div>  <!-- End Container -->
+
+    <!-- Scroll to Top -->  
+    <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
 
     <div  ng-controller='numbersController'>
         <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
@@ -26,3 +110,67 @@
         </div>
     </div>
 
+
+
+<div ng-controller="TestEverything">
+    <button ng-click="loadNews()" value="loadMore"/>
+    <button ng-click="loadTopMoney()" value="loadTopMoney"/>
+    <button ng-click="loadNewProjects()" value="loadNewProjects"/>
+    <button ng-click="loadTopProjects()" value="loadTopProjects" />
+     <button ng-click="loadUsers()" value="loadUsers"/>
+    <button ng-click="getTags()" value= "getTags" />
+    <input type="text" ng-model="id">
+    <button ng-click="deleteUser(id)" value="deleteuser"/>
+    <button ng-click="confirmUser(id)" value="confirmUser"/>
+     <input type="text" ng-model="confirmation">
+    <button ng-click="passConfirmation(confirmation)" value="passconfirmation"/>
+    <button ng-click="blockUser(id)" value="blockUSer"/>
+    <input type="text" ng-model="title"/>
+    <button ng-click="getProject(title)" value="getProject" />
+    <input type="text" ng-model="rate">
+    <button ng-click="setRate(rate)" value="setRate"/>
+     <input type="text" ng-model="UserStatus">
+    <button ng-click="setStatus(UserStatus)" value="setStatus"/>
+    <form>
+        <div class="span6">
+                    <form><p><textarea name="textarea" class="span6" ng-model="comment.Text"></textarea></p></form>
+                </div>
+                <div class="span6"> 
+                    <button class="btn btn-large " type="button" ng-click="addComment(comment)">Add comment</button>
+                </div>
+    </form>
+    <input type="text" ng-model="payment.sum">
+    <button ng-click="pay(payment)" value="pay"/>
+    <input type="text" ng-model="id"/>
+    <button ng-click="subscribe(id)" value="subscribe"/>
+
+    <form>
+        <div class="span6">
+                    <form><p><textarea name="textarea" class="span6" ng-model="color"></textarea></p></form>
+                </div>
+                <div class="span6"> 
+                    <button class="btn btn-large " type="button" ng-click="changeColor(color)">change color</button>
+                </div>
+    </form>
+
+    <form>
+        <div class="span6">
+                    <form><p><textarea name="textarea" class="span6" ng-model="language"></textarea></p></form>
+                </div>
+                <div class="span6"> 
+                    <button class="btn btn-large " type="button" ng-click="changeLanguage(language)">change language</button>
+                </div>
+    </form>
+
+    <form>
+        <div class="span6">
+                    <form><p><textarea name="textarea" class="span6" ng-model="query"></textarea></p></form>
+                </div>
+                <div class="span6"> 
+                    <button class="btn btn-large " type="button" ng-click="sendQuery(query)">send query</button>
+                </div>
+    </form>
+
+    
+    
+    </div>
