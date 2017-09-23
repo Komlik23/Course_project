@@ -40,7 +40,7 @@ app.controller('numbersController', numbersController);
 
 app.controller("sendProjectController", ['$scope',"$http", function ($scope,$http) {
     $scope.update = function (project) {
-        $scope.project.Id = 2323;
+        
         $scope.project.DateOfEnd = "2012-04-23T18:25:43.511Z";
         $scope.project.Content = "drew";
         $scope.project.Comments = [];

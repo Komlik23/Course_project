@@ -26,20 +26,12 @@ namespace Course_with_angular.Controllers
         public string AddProject()
         {
 
-            try
-            {
                 string jsonContent = this.GetJson();
                 Project_Model project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
                 project.UserId = "56";
                 db.Add(project);
                 db.SaveChanges();
-            }
-            catch(Exception e)
-            {
-                JsonConvert.SerializeObject(ResultModel.Failure(e.Message));
-            }
-            
-            return JsonConvert.SerializeObject(ResultModel.Success());
+            return JsonConvert.SerializeObject(project);
         }
 
         [HttpGet]
