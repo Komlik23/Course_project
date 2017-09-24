@@ -101,168 +101,168 @@ app.controller("sendProjectController", ['$scope',"$http", function ($scope,$htt
 }]);
 
 
-app.controller('loadProjects', function ($scope,$http) {
-    var response
-    $scope.loadProjects = function () {
+//app.controller('loadProjects', function ($scope,$http) {
+//    var response
+//    $scope.loadProjects = function () {
 
-        var res = $http.get('/Get/GetProjects').then(
-            function (data, status, headers, config) {
-            response = data;
-            console.log(data)
-            },
-            function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({ data: data }));
-            }
-        )
+//        var res = $http.get('/Get/GetProjects').then(
+//            function (data, status, headers, config) {
+//            response = data;
+//            console.log(data)
+//            },
+//            function (data, status, headers, config) {
+//                alert("failure message: " + JSON.stringify({ data: data }));
+//            }
+//        )
         
-    };
+//    };
 
-    $scope.loadProjects();
-    if (response.length >= 5) {
-        for (var i = 0; i < 5; i++) {
-            $scope.projects[i] = response[i]
-        }
-    }
-
-
-    $scope.loadMore = function () {
-        var last = $scope.projects[$scope.projects.length - 1];
-        if ((response.length - $scope.projects.length + 1) >= 10) {
-            for (var i = 1; i <= 10; i++) {
-                $scope.projects.CommentsAmount = response[last + i].Comments.length;
-                $scope.projects.push(response[last + i]);
-            }
-        }
-        else {
-            for (var i = 1; i <= response.length - 1; i++) {
-                $scope.projects.CommentsAmount = response[last + i].Comments.length;
-                $scope.projects.push(response[last + i]);
-            }
-        }
-    }
-
-});
-
-app.controller('loadNewProjects', function ($scope) {
-    var response
-    $scope.loadNewProjects = function () {
-
-        var res = $http.get('/Get/loadNewProjects').then(
-            function (data, status, headers, config) {
-            response = data;
-            console.log(data)
-            },
-            function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({ data: data }));
-            }
-        )
-
-    };
-
-    $scope.loadNewProjects();
-    if (response.length >= 5) {
-        for (var i = 0; i < 5; i++) {
-            $scope.projects[i] = response[i]
-        }
-    }
+//    $scope.loadProjects();
+//    if (response.length >= 5) {
+//        for (var i = 0; i < 5; i++) {
+//            $scope.projects[i] = response[i]
+//        }
+//    }
 
 
-    $scope.loadMore = function () {
-        var last = $scope.projects[$scope.projects.length - 1];
-        if ((response.length - $scope.projects.length + 1) >= 10) {
-            for (var i = 1; i <= 10; i++) {
-                $scope.projects.CommentsAmount = response[last + i].Comments.length;
-                $scope.projects.push(response[last + i]);
-            }
-        }
-        else {
-            for (var i = 1; i <= response.length - 1; i++) {
-                $scope.projects.CommentsAmount = response[last + i].Comments.length;
-                $scope.projects.push(response[last + i]);
-            }
-        }
-    }
+//    $scope.loadMore = function () {
+//        var last = $scope.projects[$scope.projects.length - 1];
+//        if ((response.length - $scope.projects.length + 1) >= 10) {
+//            for (var i = 1; i <= 10; i++) {
+//                $scope.projects.CommentsAmount = response[last + i].Comments.length;
+//                $scope.projects.push(response[last + i]);
+//            }
+//        }
+//        else {
+//            for (var i = 1; i <= response.length - 1; i++) {
+//                $scope.projects.CommentsAmount = response[last + i].Comments.length;
+//                $scope.projects.push(response[last + i]);
+//            }
+//        }
+//    }
 
-});
+//});
 
-app.controller('loadUsers', function($scope) {
-   var response;
-   $scope.loadUsers = function (id) {
+//app.controller('loadNewProjects', function ($scope) {
+//    var response
+//    $scope.loadNewProjects = function () {
+
+//        var res = $http.get('/Get/loadNewProjects').then(
+//            function (data, status, headers, config) {
+//            response = data;
+//            console.log(data)
+//            },
+//            function (data, status, headers, config) {
+//                alert("failure message: " + JSON.stringify({ data: data }));
+//            }
+//        )
+
+//    };
+
+//    $scope.loadNewProjects();
+//    if (response.length >= 5) {
+//        for (var i = 0; i < 5; i++) {
+//            $scope.projects[i] = response[i]
+//        }
+//    }
+
+
+//    $scope.loadMore = function () {
+//        var last = $scope.projects[$scope.projects.length - 1];
+//        if ((response.length - $scope.projects.length + 1) >= 10) {
+//            for (var i = 1; i <= 10; i++) {
+//                $scope.projects.CommentsAmount = response[last + i].Comments.length;
+//                $scope.projects.push(response[last + i]);
+//            }
+//        }
+//        else {
+//            for (var i = 1; i <= response.length - 1; i++) {
+//                $scope.projects.CommentsAmount = response[last + i].Comments.length;
+//                $scope.projects.push(response[last + i]);
+//            }
+//        }
+//    }
+
+//});
+
+//app.controller('loadUsers', function($scope) {
+//   var response;
+//   $scope.loadUsers = function (id) {
         
-    var res = $http.get('/Get/GetTopUsers').then(
-        function (data, status, headers, config) {
-           response = data;
-           console.log(data)
-        },
-        function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-            response = data;
-        }
-    )
+//    var res = $http.get('/Get/GetTopUsers').then(
+//        function (data, status, headers, config) {
+//           response = data;
+//           console.log(data)
+//        },
+//        function (data, status, headers, config) {
+//            alert("failure message: " + JSON.stringify({ data: data }));
+//            response = data;
+//        }
+//    )
 
-   };
+//   };
 
-   if(response.length>=5){
-       for(var i=0;i<5;i++){
-           $scope.users[i]=response[i]
-       }
-   }
+//   if(response.length>=5){
+//       for(var i=0;i<5;i++){
+//           $scope.users[i]=response[i]
+//       }
+//   }
  
 
- $scope.loadMore = function() {
-   var last = $scope.users[$scope.users.length - 1];
-   if((response.length-$scope.users.length + 1)>=10){
-       for(var i = 1; i <= 10; i++) {
-           $scope.users.push(response[last + i]);
-       } 
-   }
-   else {
-           for(var i = 1; i <= response.length-1; i++) {
-               $scope.users.push(response[last + i]);
-           } 
-       }
-   }
+// $scope.loadMore = function() {
+//   var last = $scope.users[$scope.users.length - 1];
+//   if((response.length-$scope.users.length + 1)>=10){
+//       for(var i = 1; i <= 10; i++) {
+//           $scope.users.push(response[last + i]);
+//       } 
+//   }
+//   else {
+//           for(var i = 1; i <= response.length-1; i++) {
+//               $scope.users.push(response[last + i]);
+//           } 
+//       }
+//   }
     
-});
+//});
 
-app.controller('loadNews', function($scope) {
-   var response;
-   $scope.loadTopMoney = function () {
+//app.controller('loadNews', function($scope) {
+//   var response;
+//   $scope.loadTopMoney = function () {
         
-       var res = $http.get('/Get/GetTopNews').then(
-        function (data, status, headers, config) {
-            response = data;
-            console.log(data)
-        },
-        function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        }
-       )
+//       var res = $http.get('/Get/GetTopNews').then(
+//        function (data, status, headers, config) {
+//            response = data;
+//            console.log(data)
+//        },
+//        function (data, status, headers, config) {
+//            alert("failure message: " + JSON.stringify({ data: data }));
+//        }
+//       )
       
-   };
-   loadTopMoney();
-   if(response.length>=5){
-       for(var i=0;i<5;i++){
-           $scope.news[i]=response[i]
-       }
-   }
+//   };
+//   loadTopMoney();
+//   if(response.length>=5){
+//       for(var i=0;i<5;i++){
+//           $scope.news[i]=response[i]
+//       }
+//   }
  
 
- $scope.loadMore = function() {
-   var last = $scope.news[$scope.news.length - 1];
-   if((response.length-$scope.news.length + 1)>=10){
-       for(var i = 1; i <= 10; i++) {
-           $scope.news.push(response[last + i]);
-       } 
-   }
-   else {
-           for(var i = 1; i <= response.length-1; i++) {
-               $scope.users.push(response[last + i]);
-           } 
-       }
-   }
+// $scope.loadMore = function() {
+//   var last = $scope.news[$scope.news.length - 1];
+//   if((response.length-$scope.news.length + 1)>=10){
+//       for(var i = 1; i <= 10; i++) {
+//           $scope.news.push(response[last + i]);
+//       } 
+//   }
+//   else {
+//           for(var i = 1; i <= response.length-1; i++) {
+//               $scope.users.push(response[last + i]);
+//           } 
+//       }
+//   }
     
-});
+//});
 
 app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
     
@@ -379,10 +379,11 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
     };
 
     $scope.addComment = function (comment) {
-        comment.Time=new Date().format('MM/DD/YYYY h:mm a');
-        comment.Author="1234";
+        comment.Time = "19.06.2015 10:03:06"
+        comment.Author = "1234";
+        comment.ProjectId=2004
         console.log(comment)
-       var res = $http.post('../Project/AddComment',JSON.stringify(comment)).then(
+       var res = $http.post('../Attachment/AddComment',JSON.stringify(comment)).then(
            function (data, status, headers, config) {
            $scope.message = data;
            console.log(data)
