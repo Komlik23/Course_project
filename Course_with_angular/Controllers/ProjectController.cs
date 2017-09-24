@@ -51,8 +51,16 @@ namespace Course_with_angular.Controllers
 
         public string GetTopProject()
         {
-            var projects = db.Projects.Select(project => project.Rates.OrderByDescending(item => item.Mark)).
+            var marks = db.Projects.Select(mark => mark.Rates.OrderByDescending(item => item.Mark)).
                 Take(NewProjectAmount);
+            List<Project_Model> projects = new List<Project_Model>();
+            foreach(var pr in marks)
+            {
+                foreach(var subpr in pr)
+                {
+                    projects.Add(db.Projects.Find(subpr.ProjectId));
+                }
+            }
             return JsonConvert.SerializeObject(projects);
         }
 
