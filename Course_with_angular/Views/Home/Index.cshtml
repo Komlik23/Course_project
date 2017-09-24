@@ -14,6 +14,7 @@
             float:none;
         }
     </style>
+  
 </head>
 <body>
     
@@ -25,95 +26,119 @@
 
         <!-- Blog Posts
         ================================================== --> 
+        
+        
         <div class="span4 ">
             <h5 class="title-bg">Popular Users</h5>
             <ul class="popular-posts TopUser" ng-controller="loadUsers">
+                <div>{{$users}}</div>
                 <li ng-repeat='user in users'>
                     <a href="/Project/GetUser?id="+user.Id><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6>user.Name</h6>
-                    <em>user.Rate<em>
-                    <h6>user.ProjectsAmount</h6>
+                    <h6>{{user.UserName}}</h6>
+                    <em>{{user.Rate}}<em>
+                    <h6>{{user.ProjectsAmount}}</h6>
                 </li>
             </ul>
 
             <!--Tabbed Content-->
         </div>
         
-        <div class="span4 ">
-            <h5 class="title-bg">News</h5>
-            <ul class="popular-posts TopNews" ng-controller="loadPosts">
-                <li ng-repeat='fact in news'>
-                    <a href="/Project/GetProject?id="+fact.Id><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6>fact.Content</h6>
-                    <em>fact.Date</em>
+
+
+
+        <div ng-controller="TodoListController as todoList">
+            
+           
+            <ul class="unstyled">
+                <li ng-repeat="todo in todoList.todos">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="todo.done">
+                        <span class="done-{{todo.done}}">{{todo.text}}</span>
+                    </label>
                 </li>
             </ul>
-
-            <!--Tabbed Content-->
         </div>
-        <div class="span8 blog " ng-controller='loadProjects'>
-            <h4 class="title-bg span12">TOP-5 OUR PROJECTS</h4>
-            
-            <!-- Blog Post 1 -->
-            <article ng-repear='project in projects' class="clearfix TopProject">
 
-                <a href="/Project/GetProject?id="+project.Id><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
-                <h5 class="title-bg">project.Title</h5>
-                    <p>Project.Content</p>
-                    <button class="btn btn-mini btn-inverse" type="button" >Read more</button>
+
+
+
+
+
+            <div class="span4 ">
+                <h5 class="title-bg">News</h5>
+                <ul class="popular-posts TopNews" ng-controller="loadNews as news">
+                    <li ng-repeat='fact in news.arr'>
+                        <a href="/Project/GetProject?id=" +fact.Id><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                        <h6>{{fact.Content}}</h6>
+                        <em>{{fact.Date}}</em>
+                    </li>
+                </ul>
+
+                <!--Tabbed Content-->
+            </div>
+            <div class="span8 blog " ng-controller='loadProjects'>
+                <h4 class="title-bg span12">TOP-5 OUR PROJECTS</h4>
+
+                <!-- Blog Post 1 -->
+                <article ng-repeat='project in projects[0]' class="clearfix">
+                    <div>{{project}}</div>
+                    <a href="/Project/GetProject?id=" +project.Id><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
+                    <h5 class="title-bg">{{project.Id}}</h5>
+                    <p>{{project.Content}}</p>
+                    <button class="btn btn-mini btn-inverse" type="button">Read more</button>
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
-                            <li><i class="icon-calendar"></i>project.Date</li>
-                            <li><i class="icon-user"></i> <a href="#">project.User.Name</a></li>
+                            <li><i class="icon-calendar"></i>{{project.Date}}</li>
+                            <li><i class="icon-user"></i> <a href="#">{{project.UserName}}</a></li>
                             <li><i class="icon-comment"></i>{{CommentsAmount}}</li>
-                            <li><i class="icon-tags"></i><i ng-repeat='tag in tags'>tag.Text</i></li>
+                            <li><i class="icon-tags"></i><i ng-repeat='tag in project.tags'>{{tag.Text}}</i></li>
                         </ul>
                     </div>
-            </article>
-        </div>
+                </article>
+            </div>
 
-           
 
-           
-        <div class="span8 blog " ng-controller='loadNewProjects'>
-            <h4 class="title-bg span12">OUR NEW PROJECTS</h4>
+
+
+            <div class="span8 blog " ng-controller='loadNewProjects as projects'>
+                <h4 class="title-bg span12">OUR NEW PROJECTS</h4>
                 <article ng-repear='project in projects' class="clearfix NewProject">
-                    <a href="/Project/GetProject?id="+project.Id><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
-                    <h5 class="title-bg">project.Title</h5>
+                    <a href="/Project/GetProject?id=" +project.Id><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
+                    <h5 class="title-bg">{{project.Title}}</h5>
                     <p>Project.Content</p>
-                    <button class="btn btn-mini btn-inverse" type="button" >Read more</button>
+                    <button class="btn btn-mini btn-inverse" type="button">Read more</button>
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
-                            <li><i class="icon-calendar"></i>project.Date</li>
+                            <li><i class="icon-calendar"></i>{{project.Date}}</li>
                             <li><i class="icon-user"></i> <a href="#">project.User.Name</a></li>
                             <li><i class="icon-comment"></i>{{CommentsAmount}}</li>
-                            <li><i class="icon-tags"></i><i ng-repeat='tag in tags'>tag.Text</i></li>
+                            <li><i class="icon-tags"></i><i ng-repeat='tag in roject.tags'>{{tag.Text}}</i></li>
                         </ul>
                     </div>
-            </article>
-            <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(projects)" >View more</button>
+                </article>
+                <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(projects.arr)">View more</button>
+            </div>
+
+            <!-- Blog Sidebar
+        ================================================== -->
+            <script src="~/js/loader.js"></script>
         </div>
-
-        <!-- Blog Sidebar
-        ================================================== --> 
-
-    </div>
     
     </div>  <!-- End Container -->
 
     <!-- Scroll to Top -->  
     <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
-<script src='~/js/loader.js'></script>
 
-    <div  ng-controller='numbersController'>
+
+    @*<div  ng-controller='numbersController'>
         <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
             <img ng-repeat='image in images' ng-src='http://placehold.it/225x250&text={{image}}'>
         </div>
-    </div>
+    </div>*@
 
 
 
-<div ng-controller="TestEverything">
+@*<div ng-controller="TestEverything">
     <p>
         <button ng-click="loadNews()" value="loadMore" />
     </p>
@@ -184,4 +209,4 @@
 
     
     
-    </div>
+    </div>*@

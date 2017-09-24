@@ -104,7 +104,7 @@
                         { 
                         <li><a asp-area="" asp-controller="Admin" asp-action="AdminPage">{{'AdminPage'| translate}}</a></li> 
                         }
-                        @if(User.IsInRole("admin") || User.IsInRole("user") || User.IsInRole("userConfirmed"))
+                        @if(User.IsInRole("admin") || User.IsInRole("user") || User.IsInRole("userConfirmed")) { 
                         <li><a asp-area="" asp-controller="Home" asp-action="Profile">{{'Profile'| translate}}</a></li> 
                         } 
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>

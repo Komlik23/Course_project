@@ -120,6 +120,12 @@ namespace Course_with_angular.Controllers
             return jsonObject;
         }
 
+
+        public IActionResult Projects()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             IEnumerable<Project_Model> projects = db.Projects;

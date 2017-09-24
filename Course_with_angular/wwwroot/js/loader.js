@@ -1,33 +1,52 @@
-﻿app.controller('loadProjects', function ($scope,$http) {
-    var response
-    $scope.loadProjects = function () {
+﻿var app1 = angular.module("course",
+    [
+        'pascalprecht.translate',
+        'ngRoute',
+    ]);
 
-        var res = $http.get('/Home/GetProjects').then(
+app1.controller('loadProjects', function ($scope, $http) {
+    var response = {};
+
+    var loadProjects = function () {
+
+        var res = $http.get('../Project/GetTopProject').then(
             function (data, status, headers, config) {
-            response = data;
-            console.log(data)
+                response = data;
+            
+            $scope.projects = response.data;
+            
+                continueResp()
             },
             function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({ data: data }));
+                console.log("failure message: " + JSON.stringify({ data: data }));
             }
         )
         
     };
 
-    $scope.loadProjects();
-    if(response==null){
-         document.getElementsByClassName("TopProject")[0].innerHTML+="<p>Sorry,there are no top projects yet:(</p>"
-    }else{
-        if (response.length >= 5) {
-            for (var i = 0; i < 5; i++) {
-                $scope.projects[i] = response[i]
-            }
-        } else{
-            for (var i = 0; i < response.length; i++) {
-                $scope.projects[i] = response[i]
+    loadProjects();
+    console.log(response)
+    var continueResp = function () {
+        if (projects.length == 0) {
+            //document.getElementsByClassName("TopProject")[0].innerHTML+="<p>Sorry,there are no top projects yet:(</p>"
+        } else {
+            if (projects.length >= 5) {
+                for (var i = 0; i < 5; i++) {
+                    projects[i].push(response[i])
+                    console.log(projects[i])
+                }
+            } else {
+                projects.arr = [{
+                    Id:1
+                }];
+                for (var i = 0; i < response.length; i++) {
+                    projects.arr.push(response[i])
+                    console.log(projects[i])
+                }
             }
         }
     }
+    
    
 
 
@@ -49,14 +68,16 @@
 
 });
 
-app.controller('loadNewProjects', function ($scope,$http) {
+app1.controller('loadNewProjects', function ($scope,$http) {
     var response
+    var projects=this
     $scope.loadNewProjects = function () {
 
-        var res = $http.get('/Home/GetProjects').then(
+        var res = $http.get('../Project/GetNewProjects').then(
             function (data, status, headers, config) {
             response = data;
             console.log(data)
+                this.arr=response
             },
             function (data, status, headers, config) {
                 alert("failure message: " + JSON.stringify({ data: data }));
@@ -65,7 +86,7 @@ app.controller('loadNewProjects', function ($scope,$http) {
 
     };
     if(response==null){
-         document.getElementsByClassName("NewProject")[0].innerHTML+="<p>Sorry,there are no new projects:(</p>"
+         //document.getElementsByClassName("NewProject")[0].innerHTML+="<p>Sorry,there are no new projects:(</p>"
     }else{
         if (response.length >= 5) {
             for (var i = 0; i < 5; i++) {
@@ -99,14 +120,17 @@ app.controller('loadNewProjects', function ($scope,$http) {
 
 });
 
-app.controller('loadUsers', function($scope,$http) {
-   var response;
+app1.controller('loadUsers', function ($scope, $http) {
+    var response = {};
    $scope.loadUsers = function (id) {
         
-    var res = $http.get('/Get/GetTopUsers').then(
+    var res = $http.get('../Project/GetAllUsers').then(
         function (data, status, headers, config) {
            response = data;
-           console.log(data)
+           console.log(response)
+           $users = response
+            console.log("Wefewv")
+            console.log($users)
         },
         function (data, status, headers, config) {
             alert("failure message: " + JSON.stringify({ data: data }));
@@ -117,13 +141,14 @@ app.controller('loadUsers', function($scope,$http) {
    };
 
    $scope.loadUsers();
-    if(response==null){
-        document.getElementsByClassName("TopUser")[0].innerHTML+="<p>Sorry,there are no top users yet:(</p>"
+   if (response == {}){
+      //  document.getElementsByClassName("TopUser")[0].innerHTML+="<p>Sorry,there are no top users yet:(</p>"
 
    } else{
         if(response.length>=5){
             for(var i=0;i<5;i++){
-                $scope.users[i]=response[i]
+                $scope.users[i] = response[i]
+                console.log($scope.users[i])
             }
         } else{
             for(var i=0;i<response.length;i++){
@@ -151,19 +176,22 @@ app.controller('loadUsers', function($scope,$http) {
     
 });
 
-app.controller('loadNews', function($scope,$http) {
-   var response;
+app1.controller('loadNews', function($scope,$http) {
+    var response;
+    var news=this
    $scope.loadTopMoney = function () {
         
-       var res = $http.get('/Get/GetTopNews').then(
-        function (data, status, headers, config) {
-            response = data;
-            console.log(data)
-        },
-        function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({ data: data }));
-        }
-       )
+       //var res = $http.get('/Get/GetTopNews').then(
+       // function (data, status, headers, config) {
+       //     response = data;
+       //     console.log(data)
+       // },
+       // function (data, status, headers, config) {
+       //     alert("failure message: " + JSON.stringify({ data: data }));
+       // }
+       //)
+       response = {};
+       news.arr=response
       
    };
    $scope.loadTopMoney();
@@ -200,7 +228,18 @@ app.controller('loadNews', function($scope,$http) {
 });
 
 
+app1.controller('TodoListController', function () {
+        var todoList = this;
+        todoList.todos = [
+            { text: 'learn AngularJS', done: true },
+            { text: 'build an AngularJS app', done: false }];
 
+        todoList.addTodo = function () {
+            todoList.todos.push({ text: todoList.todoText, done: false });
+            todoList.todoText = '';
+        };
+
+    });
 
 
 

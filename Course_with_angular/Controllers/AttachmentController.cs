@@ -93,25 +93,26 @@ namespace Course_with_angular.Controllers
                     _db.TagLink.Add(new TagLink
                     {
                         ProjectId = idProject
-
+                        
                     });
                 }
-                else
-                {
-                    Tag tag = new Tag
-                    {
-                        Text = text
-                    };
-
-                    _db.Tag.Add(tag);
-                    _db.TagLink.Add(new TagLink
-                    {
-                        ProjectId = idProject
-
-                    });
-                }
-
             }
+            else
+            {
+                Tag tag = new Tag
+                {
+                    Text = text
+                };
+
+                _db.Tag.Add(tag);
+                _db.TagLink.Add(new TagLink
+                {
+                    ProjectId = idProject,
+                    TagId = tag.Id
+                });
+            }
+
+            
             _db.SaveChanges();            
            
         }
