@@ -76,9 +76,10 @@ namespace Course_with_angular.Controllers
         }
 
         [HttpGet]
-        public string GetProjects(int page)
+        public string GetProjects()//int page
         {
-            var project = db.Projects.Skip((page - 1) * PageSize).Take(PageSize);
+            var project=db.Projects;
+            //var project = db.Projects.Skip((page - 1) * PageSize).Take(PageSize);
             return JsonConvert.SerializeObject(project);
         }
 
@@ -87,7 +88,12 @@ namespace Course_with_angular.Controllers
             return db.Projects.FirstOrDefault(item => item.Id == id);
         }
 
-
+        public string GetTopUsers()//int page
+        {
+            var users=db.User;
+            //var project = db.Projects.Skip((page - 1) * PageSize).Take(PageSize);
+            return JsonConvert.SerializeObject(users);
+        }
 
         public IActionResult Profile()
         {

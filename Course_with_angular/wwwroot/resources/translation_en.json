@@ -8,5 +8,9 @@
   "Confirmation": "Thank you for confirming your email. Please ",
   "ConfirmationLink": " Click here to Log in",
   "Home": "Home",
-  "About": "About"
+  "About": "About",
+
+  "Projects":"Projects",
+  "AdminPage":"Admin",
+  "Profile":"Profile"
 }
