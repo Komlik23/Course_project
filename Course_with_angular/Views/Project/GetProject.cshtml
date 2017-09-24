@@ -5,54 +5,58 @@
 }
 
 
-<div class="row">
-
+<div class="row" ng-controller="getProject">
+    <input type="hidden" value="@ViewBag.Project.Id" name="ProjectId" ng-model="ProjectId" />
+    <input type="hidden" value="@ViewBag.Project.UserId" name="UserId" ng-model="UserId" />
+    <input type="hidden" value="@ViewBag.Project.UserName" name="UserId" ng-model="Author" />
     <!-- Gallery Items
     ================================================== -->
-    <div class="span12 gallery-single">
-
+    <div class="span12 gallery-single SingleProject">
+        
         <div class="row">
             <div class="span6">
                 <img src="img/gallery/gallery-img-1-full.jpg" class="align-left thumbnail" alt="image">
             </div>
             <div class="span6">
-                <h2>Project Name</h2>
+                <h2>{{ response.Project.Title}}</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.</p>
+                <p>{{ response.Project.Conten}}t</p>
 
                 <ul class="project-info">
-                    <li><h6>Date of the end:</h6> 09/12/15</li>
-                    <li><h6>Aims:</h6> some aim description</li>
-                    <li><h6>Finance aim:</h6> NNN$</li>
-                    <li><h6>Finance current:</h6> MMM$</li>
-                    <li><h6>Author:</h6> Jane Doe</li>
-                    <li><h6>Tags:</h6> #smt1 #smth2 #smth3</li>
+                    <li><h6>{{"DateOfEnd" | translate}}</h6> {{response.Project.DateOfEnd}}</li>
+                    <li><h6>{{"Aims" | translate}}</h6> {{ response.Project.Description}}</li>
+                    <li><h6>{{"FinanceAim" | translate}}</h6> {{ response.Project.Finance}} $ </li>
+                    <li><h6>{{"FinanceCurrent" | translate}}</h6> {{ response.Project.FinanceCurrent}}</li>
+                    <li><h6>{{"ProjectAuthor" | translate}}</h6> {{ response.Project.Author.Name}}</li>
+                    <li><h6>{{"RateOfProject" | translate}}</h6> {{ response.Project.Rate}}</li>
+                    <li><h6>{{"Tags" | translate}}:</h6><p ng-repeat=" tag in response.Project.Tags">#{{tag}}</p>
+                    </li>
                 </ul>
 
-                <h6 ">AIM: <small>Name or description of aim</small></h6>
+                <h6 ">AIM: <small>{{"ProjectStatus" | translate}}</small></h6>
                 <div class="progress progress-success progress-striped">
-                    <div class="bar" style="width: 40%"></div>
+                    <div class="bar" style="width: "+"{{ response.Project.Progress}}"></div>
                 </div>
-                <h6>Please, enter your mark for this project</h6>
+                <h6>{{"PleaseRate" | translate}}</h6>
                 <div class="span6">
                     <div id="reviewStars-input">
-                        <input id="star-4" type="radio" name="reviewStars" />
+                        <input id="star-4" type="radio" class="Rating" ng-click="setCurrentRate(4)" name="reviewStars" />
                         <label title="gorgeous" for="star-4"></label>
 
-                        <input id="star-3" type="radio" name="reviewStars" />
+                        <input id="star-3" type="radio" class="Rating" ng-click="setCurrentRate(4)" name="reviewStars" />
                         <label title="good" for="star-3"></label>
 
-                        <input id="star-2" type="radio" name="reviewStars" />
+                        <input id="star-2" type="radio" class="Rating" ng-click="setCurrentRate(4)" name="reviewStars" />
                         <label title="regular" for="star-2"></label>
 
-                        <input id="star-1" type="radio" name="reviewStars" />
+                        <input id="star-1" type="radio" class="Rating" ng-click="setCurrentRate(4)" name="reviewStars" />
                         <label title="poor" for="star-1"></label>
 
-                        <input id="star-0" type="radio" name="reviewStars" />
+                        <input id="star-0" type="radio" class="Rating" ng-click="setCurrentRate(4)" name="reviewStars" />
                         <label title="bad" for="star-0"></label>
                     </div>
                 </div>
-                <button class="btn btn-large btn-warning pull-left" type="button">Donate</button>
+                <button class="btn btn-large btn-warning pull-left" ng-click="Donate()" type="button">{{"Donate"|translate}}</button>
                 <a href="#" class="pull-right"><i class="icon-arrow-left"></i>Back to Gallery</a>
             </div>
         </div>
@@ -60,23 +64,28 @@
     </div><!-- End gallery-single-->
 
     <div class="span12">
-        <h4 class="title-bg">Your comments to this project</h4>
+        <h4 class="title-bg">{{"CommentsToProject" | translate}}</h4>
         <div class="row ">
             <div class="span6">
-                <form><p><textarea name="textarea" class="span6"></textarea></p></form>
-            </div>
-            @foreach(var comment in ViewBag.Project.comments)
-            <div class="span6">
-                <button class="btn btn-large " type="button">Add comment</button>
-            </div>
-            <div class="well span8 comment">
-                <h6 class="title-bg"><small>Person ¹1 comment</small></h6>In sit amet nisl ac leo pulvinar molestie. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie. Etiam mattis neque eu orci rutrum aliquam.
-            </div>
-            <div class="well span8 comment">
-                <h6 class="title-bg"><small>Person ¹1 comment</small></h6>In sit amet nisl ac leo pulvinar molestie. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie. Etiam mattis neque eu orci rutrum aliquam.
+                <form>
+                    <div class="span6">
+                    <form><p><textarea name="textarea" class="span6" ng-model="comment.Contain"></textarea></p></form>
+                    </div>
+                    <div class="span6"> 
+                        <button class="btn btn-large " type="button" ng-click="addComment(comment)">{{"AddComment" | translate}}</button>
+                    </div>
+                </form>
+                <clabel ng-if="{{response.Project.Comments.length}}!=0">
+                <div class="well span8 comment" ng-repeat="comment in response.Project.Comments">
+                    <h6 class="title-bg"><small>{{comment.Author}} </small></h6>
+                    {{comment.Contain}}
+                    <p>{{"CommentTime"| translate}} {{comment.Time}} </p>     
+                </div>
+                </clabel>
+                <p ng-if="{{response.Project.Comments.length}}!=0">{{"LeaveComment" | translate}}</p>
             </div>
         </div>
     </div>
-</div>
+    <script src="~/js/singleProject.js"></script>
 
 

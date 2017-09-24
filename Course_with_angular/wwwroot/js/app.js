@@ -284,7 +284,7 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
 
     $scope.deleteUser = function (id) {
         
-        var res = $http.get('/Home/DeleteUser?id='+id).then(
+        var res = $http.get('/Project/addProject').then(
             function (data, status, headers, config) {
             $scope.message = data;
             console.log(data)
@@ -335,35 +335,9 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
        )
     };
 
-    $scope.getProject = function (title) {
-        
-        var res = $http.get('/Project/addProject').then(
-            function (data, status, headers, config) {
-            $scope.message = data;
-            console.log(data)
-            },
-            function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({ data: data }));
-            }
-       )
-        
-    };
+    
 
-    $scope.setRate = function (rate) {
-        var userId = rate * 3;
-        var projectId = 2;
-        console.log(rate)
-        var res = $http.get('../Project/SetRate?ProjectId=' + projectId + "&UserId=" + userId + "&rate=" + rate).then(
-            function (data, status, headers, config) {
-                $scope.message = data;
-                console.log(data)
-            },
-            function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({ data: data }));
-            }
-        )
-
-    };
+    
 
     $scope.setStatus = function (status) {
         
@@ -378,21 +352,7 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
        )
     };
 
-    $scope.addComment = function (comment) {
-        var current= new Date();
-        comment.Time = current;
-        comment.Author = "1234";
-        comment.ProjectId=2
-        console.log(comment)
-       var res = $http.post('../Attachment/AddComment',JSON.stringify(comment)).then(
-           function (data, status, headers, config) {
-           $scope.message = data;
-           console.log(data)
-       },
-       function(data, status, headers, config) {
-           alert("failure message: " + JSON.stringify({ data: data }));
-       }
-    )};
+   
 
     $scope.pay = function (payment) {
         

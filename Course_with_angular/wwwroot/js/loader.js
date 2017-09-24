@@ -15,11 +15,20 @@
     };
 
     $scope.loadProjects();
-    if (response.length >= 5) {
-        for (var i = 0; i < 5; i++) {
-            $scope.projects[i] = response[i]
+    if(response==null){
+         document.getElementsByClassName("TopProject")[0].innerHTML+="<p>Sorry,there are no top projects yet:(</p>"
+    }else{
+        if (response.length >= 5) {
+            for (var i = 0; i < 5; i++) {
+                $scope.projects[i] = response[i]
+            }
+        } else{
+            for (var i = 0; i < response.length; i++) {
+                $scope.projects[i] = response[i]
+            }
         }
     }
+   
 
 
     $scope.loadMore = function () {
@@ -55,13 +64,21 @@ app.controller('loadNewProjects', function ($scope,$http) {
         )
 
     };
-
-    $scope.loadNewProjects();
-    if (response.length >= 5) {
-        for (var i = 0; i < 5; i++) {
-            $scope.projects[i] = response[i]
+    if(response==null){
+         document.getElementsByClassName("NewProject")[0].innerHTML+="<p>Sorry,there are no new projects:(</p>"
+    }else{
+        if (response.length >= 5) {
+            for (var i = 0; i < 5; i++) {
+                $scope.projects[i] = response[i]
+            }
+        } else{
+            for (var i = 0; i < response.length; i++) {
+                $scope.projects[i] = response[i]
+            }
         }
     }
+    $scope.loadNewProjects();
+    
 
 
     $scope.loadMore = function () {
@@ -98,13 +115,24 @@ app.controller('loadUsers', function($scope,$http) {
     )
 
    };
-   
+
    $scope.loadUsers();
-   if(response.length>=5){
-       for(var i=0;i<5;i++){
-           $scope.users[i]=response[i]
-       }
+    if(response==null){
+        document.getElementsByClassName("TopUser")[0].innerHTML+="<p>Sorry,there are no top users yet:(</p>"
+
+   } else{
+        if(response.length>=5){
+            for(var i=0;i<5;i++){
+                $scope.users[i]=response[i]
+            }
+        } else{
+            for(var i=0;i<response.length;i++){
+                $scope.users[i]=response[i]
+            }
+        }
    }
+
+   
  
 
  $scope.loadMore = function() {
@@ -139,11 +167,20 @@ app.controller('loadNews', function($scope,$http) {
       
    };
    $scope.loadTopMoney();
-   if(response.length>=5){
-       for(var i=0;i<5;i++){
-           $scope.news[i]=response[i]
-       }
+   if(response==null){
+         document.getElementsByClassName("TopUser")[0].innerHTML+="<p>Sorry,there are no news for you yet:(</p>"
+   } else{
+        if(response.length>=5){
+            for(var i=0;i<5;i++){
+                $scope.news[i]=response[i]
+            }
+        } else{
+            for(var i=0;i<response.length;i++){
+                $scope.news[i]=response[i]
+            }
+        }
    }
+    
  
 
  $scope.loadMore = function() {

@@ -12,5 +12,20 @@
 
   "Projects":"Projects",
   "AdminPage":"Admin",
-  "Profile":"Profile"
+  "Profile":"Profile",
+  "CommentTime":"Commented at ",
+  "LeaveComment":"There are no comments,be the first one to leave `em here!",
+  "AddComment" : "Add comment",
+  "CommentsToProject": "Comments to this project",
+  "Donate":"Donate",
+  "PleaseRate":"Please, rate this project: ",
+  "ProjectStatus":"Status of project",
+  "DateOfEnd" : "Date of the end: ",
+  "Aims" : "Aims: ",
+  "FinanceAim" : "Finance aim: ",
+  "FinanceCurrent" : "Finance current: ",
+  "ProjectAuthor" : "Author: ",
+  "RateOfProject" : "Rate: ",
+  "TagsOfProject" : "Tags:"
+
 }
