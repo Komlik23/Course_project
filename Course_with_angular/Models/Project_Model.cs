@@ -27,10 +27,9 @@ namespace Course_with_angular.Models
         [JsonIgnore]
         public List<TagLink> TagLinks { get; set; }
 
-        public double GetRate()
-        {
-            return Rates.Sum(x=>Convert.ToDouble(x)) /Rates.Count ;
-        }
+     
+
+
     }
 
 }

@@ -284,7 +284,7 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
 
     $scope.deleteUser = function (id) {
         
-        var res = $http.get('/Project/addProject').then(
+        var res = $http.get('/Home/DeleteUser?id='+id).then(
             function (data, status, headers, config) {
             $scope.message = data;
             console.log(data)
@@ -351,7 +351,7 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
 
     $scope.setRate = function (rate) {
         var userId = rate * 3;
-        var projectId = 2004;
+        var projectId = 2;
         console.log(rate)
         var res = $http.get('../Project/SetRate?ProjectId=' + projectId + "&UserId=" + userId + "&rate=" + rate).then(
             function (data, status, headers, config) {
@@ -379,9 +379,10 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
     };
 
     $scope.addComment = function (comment) {
-        comment.Time = "19.06.2015 10:03:06"
+        var current= new Date();
+        comment.Time = current;
         comment.Author = "1234";
-        comment.ProjectId=2004
+        comment.ProjectId=2
         console.log(comment)
        var res = $http.post('../Attachment/AddComment',JSON.stringify(comment)).then(
            function (data, status, headers, config) {

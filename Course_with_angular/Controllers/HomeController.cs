@@ -28,7 +28,7 @@ namespace Course_with_angular.Controllers
 
                 string jsonContent = this.GetJson();
                 Project_Model project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
-                project.UserId = "56";
+                project.UserId = "e8ed1ddd-2161-4ffc-8f4c-6fb0c5fb6ed4";
                 db.Add(project);
                 db.SaveChanges();
             return JsonConvert.SerializeObject(project);

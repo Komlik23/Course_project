@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Course_with_angular.Data;
 
-namespace Course_with_angular.Data.Migrations
+namespace Course_with_angular.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170907145543_Initial")]
-    partial class Initial
+    [Migration("20170924154946_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,10 @@ namespace Course_with_angular.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<bool>("IsValidatedByAdmin");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -42,6 +46,8 @@ namespace Course_with_angular.Data.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
+                    b.Property<string>("Passport");
+
                     b.Property<string>("PasswordHash");
 
                     b.Property<string>("PhoneNumber");
@@ -49,6 +55,8 @@ namespace Course_with_angular.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("Theme");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -65,6 +73,124 @@ namespace Course_with_angular.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author");
+
+                    b.Property<string>("Contain");
+
+                    b.Property<int>("ProjectId");
+
+                    b.Property<DateTime>("Time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Comment");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Project_Model", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("DateOfEnd");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ImageReference");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Rate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<float>("Mark");
+
+                    b.Property<int>("ProjectId");
+
+                    b.Property<int?>("Project_ModelId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Project_ModelId");
+
+                    b.ToTable("Rates");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tag");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.TagLink", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ProjectId");
+
+                    b.Property<int>("TagId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("TagLink");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Target", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Achieved");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int?>("Project_ModelId");
+
+                    b.Property<double>("Summ");
+
+                    b.Property<string>("Tags");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Project_ModelId");
+
+                    b.ToTable("Target");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -172,6 +298,48 @@ namespace Course_with_angular.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Comment", b =>
+                {
+                    b.HasOne("Course_with_angular.Models.Project_Model", "Project")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Project_Model", b =>
+                {
+                    b.HasOne("Course_with_angular.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Rate", b =>
+                {
+                    b.HasOne("Course_with_angular.Models.Project_Model")
+                        .WithMany("Rates")
+                        .HasForeignKey("Project_ModelId");
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.TagLink", b =>
+                {
+                    b.HasOne("Course_with_angular.Models.Project_Model", "Project")
+                        .WithMany("TagLinks")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Course_with_angular.Models.Tag", "Tag")
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Course_with_angular.Models.Target", b =>
+                {
+                    b.HasOne("Course_with_angular.Models.Project_Model")
+                        .WithMany("Targets")
+                        .HasForeignKey("Project_ModelId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

@@ -1,10 +1,13 @@
 ﻿using Course_with_angular.Data;
 using Course_with_angular.Models;
+using Course_with_angular.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Course_with_angular.Utils.HttpUtility;
+
 
 namespace Course_with_angular.Controllers
 {
@@ -17,7 +20,7 @@ namespace Course_with_angular.Controllers
 
         }
 
-        public double SetRate(int ProjectId, string UserId, int rate)
+        public int SetRate(int ProjectId, string UserId, int rate)
         {
             Rate CurrentRate = new Rate
             {
@@ -33,7 +36,7 @@ namespace Course_with_angular.Controllers
             }
             db.Projects.Find(ProjectId).Rates.Add(CurrentRate);
             db.SaveChanges();     
-            return db.Projects.Find(ProjectId).GetRate();
+            return Getter.GetRate(db.Projects.Find(ProjectId).Rates);
         }
     }
 }
