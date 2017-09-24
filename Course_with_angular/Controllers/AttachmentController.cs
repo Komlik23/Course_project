@@ -4,9 +4,11 @@ using Course_with_angular.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Course_with_angular.Controllers
 {
@@ -14,6 +16,7 @@ namespace Course_with_angular.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
+        
 
         public AttachmentController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
@@ -78,6 +81,42 @@ namespace Course_with_angular.Controllers
                 return JsonConvert.SerializeObject(ResultModel.Failure(e.Message));
             }
         }
+
+        [HttpGet]
+        public void AddTag(string text, int idProject)
+        {
+            var dbTag = _db.Tag.FirstOrDefault(item => item.Equals(text));
+            if (dbTag != null)
+            {
+                if (_db.Tag.Any(item => item.Text.Equals(text)))
+                {
+                    _db.TagLink.Add(new TagLink
+                    {
+                        ProjectId = idProject
+
+                    });
+                }
+                else
+                {
+                    Tag tag = new Tag
+                    {
+                        Text = text
+                    };
+
+                    _db.Tag.Add(tag);
+                    _db.TagLink.Add(new TagLink
+                    {
+                        ProjectId = idProject
+
+                    });
+                }
+
+            }
+            _db.SaveChanges();            
+           
+        }
+
+
 
         [HttpPost]
         public IActionResult AddTarget(Target target)

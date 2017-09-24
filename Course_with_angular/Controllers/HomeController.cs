@@ -25,12 +25,12 @@ namespace Course_with_angular.Controllers
         [HttpPost]
         public string AddProject()
         {
-
-                string jsonContent = this.GetJson();
-                Project_Model project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
-                project.UserId = "e8ed1ddd-2161-4ffc-8f4c-6fb0c5fb6ed4";
-                db.Add(project);
-                db.SaveChanges();
+            string jsonContent = this.GetJson();
+            Project_Model project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
+            project.CreatedOn = DateTime.Now;
+            project.UserId = "e8ed1ddd-2161-4ffc-8f4c-6fb0c5fb6ed4";
+            db.Add(project);
+            db.SaveChanges();
             return JsonConvert.SerializeObject(project);
         }
 
@@ -51,13 +51,24 @@ namespace Course_with_angular.Controllers
         }
 
         [HttpPost]
-        public string Edit(string jsonContent)
+        public string Edit()
         {
             try
             {
-                var project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
-                db.Update(project);
-                db.SaveChanges();
+                string json = this.GetJson();
+                var project = JsonConvert.DeserializeObject<Project_Model>(json);
+                Project_Model existingProject = db.Projects.Find(project.Id);
+                if (existingProject != null)
+                {
+                    existingProject.Content = project.Content;
+                    existingProject.DateOfEnd = project.DateOfEnd;
+                    existingProject.Description = project.Description;
+                    existingProject.Title = project.Title;
+                    existingProject.ImageReference = project.ImageReference;
+
+                    db.Update(existingProject);
+                    db.SaveChanges();
+                }
             }
             catch (Exception e)
             {
@@ -72,13 +83,13 @@ namespace Course_with_angular.Controllers
             var project = FindProjectById(id);
             ViewBag.project = project;
             return JsonConvert.SerializeObject(project);
-            
+
         }
 
         [HttpGet]
         public string GetProjects()//int page
         {
-            var project=db.Projects;
+            var project = db.Projects;
             //var project = db.Projects.Skip((page - 1) * PageSize).Take(PageSize);
             return JsonConvert.SerializeObject(project);
         }
@@ -88,7 +99,7 @@ namespace Course_with_angular.Controllers
             return db.Projects.FirstOrDefault(item => item.Id == id);
         }
 
-        
+
 
         public IActionResult Profile()
         {

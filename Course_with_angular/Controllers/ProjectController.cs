@@ -1,7 +1,9 @@
 ﻿using Course_with_angular.Data;
 using Course_with_angular.Models;
 using Course_with_angular.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +15,16 @@ namespace Course_with_angular.Controllers
 {
     public class ProjectController: Controller
     {
-        ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private const int NewProjectAmount = 10; 
+
         public ProjectController(ApplicationDbContext _db)
         {
             db = _db;
 
         }
 
-        public int SetRate(int ProjectId, string UserId, int rate)
+        public double SetRate(int ProjectId, string UserId, int rate)
         {
             Rate CurrentRate = new Rate
             {
@@ -38,5 +42,27 @@ namespace Course_with_angular.Controllers
             db.SaveChanges();     
             return Getter.GetRate(db.Projects.Find(ProjectId).Rates);
         }
+
+        public string GetNewProjects()
+        {
+            var projects = db.Projects.OrderByDescending(project => project.CreatedOn).Take(NewProjectAmount);
+            return JsonConvert.SerializeObject(projects);
+        }
+
+        public string GetTopProject()
+        {
+            var projects = db.Projects.Select(project => project.Rates.OrderByDescending(item => item.Mark)).
+                Take(NewProjectAmount);
+            return JsonConvert.SerializeObject(projects);
+        }
+
+        
+        public string GetAllUsers()
+        {
+            return JsonConvert.SerializeObject(db.Users);
+            
+        }
+
+
     }
 }
