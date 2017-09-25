@@ -20,12 +20,13 @@ getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $
        )
        getComment = function (ProjectId) {
         var response;
-        var res = $http.get('GetSingleProject?id='+ProjectId).then(
+        var res = $http.get('GetComment?id='+ProjectId).then(
             function (data, status, headers, config) {
             response = data;
             console.log(data)
-            $scope.response.Comments = response;
-                console.log($scope.comments)
+            $scope.Comments = response.data;
+            $scope.CommentsAmount=$scope.response.data.length
+                console.log($scope.Comments)
             },
             function (data, status, headers, config) {
                 console.log("failure message: " + JSON.stringify({ data: data }));

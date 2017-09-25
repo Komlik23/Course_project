@@ -38,6 +38,7 @@
                     <h6>{{user.ProjectsAmount}}</h6>
                 </li>
             </ul>
+            <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(users)">View more</button>
         </div>
             <!--Tabbed Content-->
         <div class="span4 ">
@@ -49,8 +50,20 @@
                     <em>{{fact.Date}}</em>
                 </li>
             </ul>
+            <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(news)">View more</button>
             <!--Tabbed Content-->
         </div>
+
+        <div class="span4 ">
+            <h5 class="title-bg">News</h5>
+            <ul class="popular-posts Tags" ng-controller="loadTags">
+                <li ng-repeat='tag in tags'>
+                    <a href="/Project/GetProject?id={{fact.Id}}"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                    <h6>#{{tag.Text}}</h6>
+                </li>
+            </ul>
+        </div>
+
             <div class="span8 blog " ng-controller='loadProjects'>
                 <h4 class="title-bg span12">TOP PROJECTS</h4>
                 <p style="margin-bottom: 67px;"></p>
@@ -59,7 +72,7 @@
                     <a href="Home/GetProject?id={{project.Id}}"><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
                     <h5 class="title-bg">{{project.Title}}</h5>
                     <p>{{project.Content}}</p>
-                    <button class="btn btn-mini btn-inverse" type="button">Read more</button>
+                    <button class="btn btn-mini btn-inverse" type="button" ng-click="Home/GetProject?id={{project.Id}}">Read more</button>
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
                             <li><i class="icon-calendar"></i>{{project.DateOfEnd}}</li>
@@ -68,6 +81,7 @@
                             <li><i class="icon-tags"></i><i ng-repeat='tag in project.tags'>{{tag.Text}}</i></li>
                         </ul>
                     </div>
+                    <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(projects)">View more</button>
                 </article>
             </div>
 
@@ -80,17 +94,17 @@
                     <a href="Home/GetProject?id={{project.Id}}"><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
                     <h5 class="title-bg">{{project.Title}}</h5>
                     <p>{{project.Content}}</p>
-                    <button class="btn btn-mini btn-inverse" type="button">Read more</button>
+                    <button class="btn btn-mini btn-inverse" type="button" ng-click="Home/GetProject?id={{project.Id}}">Read more</button>
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
                             <li><i class="icon-calendar"></i>{{project.DateOfEnd}}</li>
                             <li><i class="icon-user"></i> <a href="#">{{project.UserName}}</a></li>
                             <li><i class="icon-comment"></i>{{CommentsAmount}}</li>
-                            <li><i class="icon-tags"></i><i ng-repeat='tag in project.tags'>{{tag.Text}}</i></li>
+                            <li><i class="icon-tags"></i><i ng-repeat='tag in project.tags'>#{{tag.Text}}</i></li>
                         </ul>
                     </div>
                 </article>
-                <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(projects.arr)">View more</button>
+                <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(projects)">View more</button>
             </div>
 
             <!-- Blog Sidebar
@@ -102,13 +116,6 @@
 
     <!-- Scroll to Top -->  
     <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
-
-
-    @*<div  ng-controller='numbersController'>
-        <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
-            <img ng-repeat='image in images' ng-src='http://placehold.it/225x250&text={{image}}'>
-        </div>
-    </div>*@
 
 
 
