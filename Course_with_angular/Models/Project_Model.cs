@@ -17,6 +17,7 @@ namespace Course_with_angular.Models
         public string Content { get; set; }
         public string Description { get; set; }
         public string ImageReference { get; set; }
+        public string UserName { get; set; }
         [JsonIgnore]
         public List<Target> Targets { get; set; }
         [JsonIgnore]
