@@ -67,7 +67,6 @@ namespace Course_with_angular.Controllers
                     existingProject.Title = project.Title;
                     existingProject.ImageReference = project.ImageReference;
                     existingProject.UserName = project.UserName;
-
                     db.Update(existingProject);
                     db.SaveChanges();
                 }

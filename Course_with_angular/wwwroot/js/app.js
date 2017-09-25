@@ -1,12 +1,8 @@
-﻿
-
-
-var app = angular.module("course",
+﻿var app = angular.module("course",
     [
         'pascalprecht.translate',
         'ngRoute',
     ]);
-
 app.config(["$translateProvider", function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({
         prefix: '../../resources/translation_',
@@ -22,9 +18,6 @@ app.controller("translateController", ["$scope", "$translate", function ($scope,
         $translate.use(lang);
     };
 }]);
-
-
-
 var numbersController = function ($scope) {
     $scope.numbers = [];
     $scope.counter = 0;
@@ -49,24 +42,9 @@ app.controller("sendProjectController", ['$scope',"$http", function ($scope,$htt
     $scope.update = function (project) {
         $scope.project.DateOfEnd = "2012-04-23T18:25:43.511Z";
 
-
-
-
-
-        //HERE!!!!!!!!!!!1
-
-
-
-
-
-
-
-
-
-
         $scope.project.Comments = [];
         $scope.project.Rate = 0;
-        $scope.project.UserId = "15454";
+        $scope.project.UserId = document.getElementById("UserId");
         $scope.project.ImageReference = images[Math.floor(Math.random() * 5)];
         jsonContent = angular.copy(project);
         console.log(jsonContent)
@@ -80,7 +58,6 @@ app.controller("sendProjectController", ['$scope',"$http", function ($scope,$htt
                 console.log("failure message: " + JSON.stringify({ data: data }));
             }
         )
-
     };
 
     
@@ -106,8 +83,7 @@ app.controller("TestEverything", ['$scope',"$http", function ($scope,$http) {
 
     };
 
-    $scope.deleteUser = function (id) {
-        
+    $scope.deleteUser = function (id) {    
         var res = $http.get('/Project/addProject').then(
             function (data, status, headers, config) {
             $scope.message = data;

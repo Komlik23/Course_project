@@ -29,9 +29,9 @@
                 <option>Last visit</option>
             </select></p>
             </h3>
-            <ul >
-                <li>
-                    <div class="row alert alert-error">
+            <ul ng-controller='listController'>
+                <li ng-repeat='user in users'>
+                    <div class="row alert alert-error ">
                         <a href="#" class="span1 "><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
                         <h6 class="span1"><a href="#"><small>Login</small><p>smth</p></a></h6>
                         <h6 class="span1"><small>Status</small><p>Not confirmed</p></h6>
@@ -44,65 +44,9 @@
                         <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Delete</button></h6>
                         <h6 class="span1"><small><input type="checkbox" checked>Delete with stars and projects</small></h6>
                     </div>
-                <li>
-                     <div class="row alert alert-error">
-                        <a href="#" class="span1 "><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                        <h6 class="span1"><a href="#"><small>Login</small><p>smth</p></a></h6>
-                        <h6 class="span1"><small>Status</small><p>Not confirmed</p></h6>
-                        <h6 class="span1"><small>Registration Time</small><p>22.12.2016</p></h6>
-                        <h6 class="span1"><small>Last visit</small><p>Yesterday</p></h6>
-                        <h6 class="span1"><small>Number of projects</small><p>5</p></h6>
-                        <h6 class="span1"><small>Stars</small><p>4.2</p></h6>
-                         <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Verify</button></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Ban</button></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Delete</button></h6>
-                        <h6 class="span1"><small><input type="checkbox" checked>Delete with stars and projects</small></h6>
-                    </div>
-                <li>
-                     <div class="row well">
-                        <a href="#" class="span1 "><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                        <h6 class="span1"><a href="#"><small>Login</small><p>smth</p></a></h6>
-                        <h6 class="span1"><small>Status</small><p>Confirmed</p></h6>
-                        <h6 class="span1"><small>Registration Time</small><p>22.12.2016</p></h6>
-                        <h6 class="span1"><small>Last visit</small><p>Yesterday</p></h6>
-                        <h6 class="span1"><small>Number of projects</small><p>5</p></h6>
-                        <h6 class="span1"><small>Stars</small><p>4.2</p></h6>
-                         <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Verify</button></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Ban</button></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Delete</button></h6>
-                        <h6 class="span1"><small><input type="checkbox" checked>Delete with stars and projects</small></h6>
-                    </div>
-                <li>
-                     <div class="row well">
-                        <a href="#" class="span1 "><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                        <h6 class="span1"><a href="#"><small>Login</small><p>smth</p></a></h6>
-                        <h6 class="span1"><small>Status</small><p>Confirmed</p></h6>
-                        <h6 class="span1"><small>Registration Time</small><p>22.12.2016</p></h6>
-                        <h6 class="span1"><small>Last visit</small><p>Yesterday</p></h6>
-                        <h6 class="span1"><small>Number of projects</small><p>5</p></h6>
-                        <h6 class="span1"><small>Stars</small><p>4.2</p></h6>
-                         <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Verify</button></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Ban</button></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Delete</button></h6>
-                        <h6 class="span1"><small><input type="checkbox" checked>Delete with stars and projects</small></h6>
-                    </div>
-                <li>
-                     <div class="row alert alert-error">
-                        <a href="#" class="span1 "><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                        <h6 class="span1"><a href="#"><small>Login</small><p>smth</p></a></h6>
-                        <h6 class="span1"><small>Status</small><p>Not confirmed</p></h6>
-                        <h6 class="span1"><small>Registration Time</small><p>22.12.2016</p></h6>
-                        <h6 class="span1"><small>Last visit</small><p>Yesterday</p></h6>
-                        <h6 class="span1"><small>Number of projects</small><p>5</p></h6>
-                        <h6 class="span1"><small>Stars</small><p>4.2</p></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Verify</button></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Ban</button></h6>
-                        <h6 class="span1"><p></p><button class="btn btn-mini" type="button">Delete</button></h6>
-                        <h6 class="span1"><small><input type="checkbox" checked>Delete with stars and projects</small></h6>
-                    </div>
-                <li>
+                </li>
             </ul>                
-
+            <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(users)">View more</button>
         </div><!-- End sidebar column -->
 
         <!-- Page Content

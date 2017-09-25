@@ -27,7 +27,7 @@ app1.controller('loadTopProjects', function ($scope, $http) {
             response = data;
             console.log(data)
             pr.Comments = response.data;
-            pr.CommentsAmount=$scope.response.data.length
+            pr.CommentsAmount=response.data.length
                 console.log(pr.Comments)
             },
             function (data, status, headers, config) {
@@ -45,7 +45,7 @@ app1.controller('loadTopProjects', function ($scope, $http) {
             response = data;
             console.log(data)
             pr.tags = response.data;
-            pr.tagsAmount=$scope.response.data.length
+            pr.tagsAmount=response.data.length
                 console.log(pr.tags)
             },
             function (data, status, headers, config) {
@@ -66,7 +66,7 @@ app1.controller('loadTopProjects', function ($scope, $http) {
                     response.data[i].DateOfEnd = response.data[i].DateOfEnd.substr(0, 10);
                     getComment(response.data[i].ProjectId,response.data[i])
                     getTag(response.data[last+i].ProjectId,response.data[i])
-                    $scope.projects.push(response.data[i])
+                    projects.push(response.data[i])
                     
                 }
             } else {
@@ -128,7 +128,7 @@ app1.controller('loadNewProjects', function ($scope, $http) {
             response = data;
             console.log(data)
             pr.Comments = response.data;
-            pr.CommentsAmount=$scope.response.data.length
+            pr.CommentsAmount=response.data.length
                 console.log(pr.Comments)
             },
             function (data, status, headers, config) {
@@ -145,7 +145,7 @@ app1.controller('loadNewProjects', function ($scope, $http) {
             response = data;
             console.log(data)
             pr.tags = response.data;
-            pr.tagsAmount=$scope.response.data.length
+            pr.tagsAmount=response.data.length
                 console.log(pr.tags)
             },
             function (data, status, headers, config) {
