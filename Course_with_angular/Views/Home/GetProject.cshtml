@@ -5,8 +5,8 @@
 <script src="~/js/singleProject.js"></script>
 <div class="row" ng-controller="getProject">
     <input type="hidden" id="ProjectId" value="@ViewBag.Project.Id" name="ProjectId" ng-model="ProjectId" />
-    <input type="hidden" value="@ViewBag.Project.UserId" name="UserId" ng-model="UserId" />
-    <input type="hidden" value="@ViewBag.Project.UserName" name="UserName" ng-model="Author" />
+    <input type="hidden" id="UserId" value="@ViewBag.Project.UserId" name="UserId" ng-model="UserId" />
+    <input type="hidden" id="UserName" value="@ViewBag.Project.UserName" name="UserName" ng-model="Author" />
     <!-- Gallery Items
     ================================================== -->
     <div class="span12 gallery-single SingleProject">
@@ -78,10 +78,10 @@
                     <div class="well span8 comment" ng-repeat="comment in response.Comments">
                         <h6 class="title-bg"><small>{{comment.Author}} </small></h6>
                         {{comment.Contain}}
-                        <p>{{"CommentTime"| translate}} {{comment.Time}} </p>
+                        <p>{{'COMMENTTIME'| translate}} {{comment.Time}} </p>
                     </div>
                 </clabel>
-                <p ng-if="{{response.Comments.length}}!=0">{{"LeaveComment" | translate}}</p>
+                <p ng-if="{{response.Comments.length}}!=0">{{'LEAVECOMMENT' | translate}}</p>
             </div>
         </div>
     </div>

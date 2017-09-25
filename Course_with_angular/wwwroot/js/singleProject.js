@@ -5,27 +5,41 @@ var getterOfProject = angular.module("course",
     ]);
 getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $http) {
     getProject = function (ProjectId) {
-        console.log(ProjectId)
         var response;
         var res = $http.get('GetSingleProject?id='+ProjectId).then(
             function (data, status, headers, config) {
             response = data;
             console.log(data)
             $scope.response = response;
-                console.log($scope.response)
+            getComment(ProjectId)
             },
             function (data, status, headers, config) {
                 console.log("failure message: " + JSON.stringify({ data: data }));
                 alert("Some problems loading page!Please,reload it!")
             }
-       ) 
+       )
+       getComment = function (ProjectId) {
+        var response;
+        var res = $http.get('GetSingleProject?id='+ProjectId).then(
+            function (data, status, headers, config) {
+            response = data;
+            console.log(data)
+            $scope.response.Comments = response;
+                console.log($scope.comments)
+            },
+            function (data, status, headers, config) {
+                console.log("failure message: " + JSON.stringify({ data: data }));
+                alert("Some problems loading page!Please,reload it!")
+            }
+       )
+
     };
     var ProjectId = document.getElementById("ProjectId").value;
     getProject(ProjectId);
-     $scope.addComment = function (comment) {
+    $scope.addComment = function (comment) {
         var date=new Date();
-        comment.ProjectId=$scope.ProjectId
-        comment.Author=Author
+        comment.ProjectId=ProjectId
+        comment.Author=document.getElementById("UserName").value;
         comment.Time = date
         console.log(comment)
        var res = $http.post('../Attachment/AddComment',JSON.stringify(comment)).then(
@@ -38,11 +52,12 @@ getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $
            console.log("failure message: " + JSON.stringify({ data: data }));
            alert("Cannot add your comment.Plese,check the internet connection and try again")
        }
-    )};
+       )
+    };
 
     $scope.setRate = function (rate) {
-        var userId = $scope.UserId;
-        var projectId = $scope.ProjectId;
+        var userId = document.getElementById("UserId").value;
+        var projectId = ProjectId
         console.log(rate)
         var res = $http.get('../Project/SetRate?ProjectId=' + projectId + "&UserId=" + userId + "&rate=" + rate).then(
             function (data, status, headers, config) {
@@ -57,8 +72,8 @@ getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $
     };
 
     $scope.setCurrentRate = function (rate) {
-        // var userId = rate * 3;
-        // var projectId = 2004;
+        var userId = document.getElementById("UserId").value;
+        var projectId = ProjectId
         console.log(rate)
         var res = $http.get('../Project/SetRate?ProjectId=' + ProjectId + "&UserId=" + UserId + "&rate=" + rate).then(
             function (data, status, headers, config) {
@@ -72,4 +87,4 @@ getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $
 
     };
 
-}]);
+};}]);
