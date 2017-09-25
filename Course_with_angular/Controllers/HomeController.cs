@@ -129,11 +129,16 @@ namespace Course_with_angular.Controllers
             return db.TagLink.FirstOrDefault(item => item.ProjectId == id);
         }
 
+
+
         [HttpGet]
         public string GetTag(int id)
         {
-            var tag = FindTagById(id);
-            return JsonConvert.SerializeObject(tag);
+            var tagsLink = FindTagById(id);
+            var tmp = db.Tag.FirstOrDefault(p => p.Id == tagsLink.TagId);
+            return JsonConvert.SerializeObject(tmp.Text);     
+            
+                                  
         }
 
 
