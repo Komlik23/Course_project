@@ -79,12 +79,23 @@ namespace Course_with_angular.Controllers
         }
 
         [HttpGet]
-        public string GetProject(int id)
+        public IActionResult GetProject(int id)
         {
             var project = FindProjectById(id);
             ViewBag.project = project;
-            return JsonConvert.SerializeObject(project);
+            //return JsonConvert.SerializeObject(project);
+            ViewBag.ProjectId = id;
+            ViewBag.UserName = "Adminchik";
+            ViewBag.UserId = "e8ed1ddd-2161-4ffc-8f4c-6fb0c5fb6ed4";
+            return View();
 
+        }
+
+        [HttpGet]
+        public string GetSingleProject(int id)
+        {
+            var project = FindProjectById(id);
+            return JsonConvert.SerializeObject(project);
         }
 
         [HttpGet]
@@ -98,6 +109,31 @@ namespace Course_with_angular.Controllers
         private Project_Model FindProjectById(int id)
         {
             return db.Projects.FirstOrDefault(item => item.Id == id);
+        }
+
+
+        private Comment FindCommentById(int id)
+        {
+            return db.Comment.FirstOrDefault(item => item.ProjectId == id);
+        }
+
+        [HttpGet]
+        public string GetComment(int id)
+        {
+            var comment = FindCommentById(id);
+            return JsonConvert.SerializeObject(comment);
+        }
+
+        private TagLink FindTagById(int id)
+        {
+            return db.TagLink.FirstOrDefault(item => item.ProjectId == id);
+        }
+
+        [HttpGet]
+        public string GetTag(int id)
+        {
+            var tag = FindTagById(id);
+            return JsonConvert.SerializeObject(tag);
         }
 
 

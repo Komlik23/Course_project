@@ -82,7 +82,7 @@
 
                 <!-- Blog Post 1 -->
                 <article ng-repeat='project in projects' class="clearfix">
-                    <a href="/GetProject?id=" +{{project.Id}}><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
+                    <a href="Home/GetProject?id={{project.Id}}"><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
                     <h5 class="title-bg">{{project.Title}}</h5>
                     <p>{{project.Content}}</p>
                     <button class="btn btn-mini btn-inverse" type="button">Read more</button>
