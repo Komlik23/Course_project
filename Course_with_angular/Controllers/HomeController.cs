@@ -8,6 +8,7 @@ using Course_with_angular.Data;
 using Course_with_angular.Models;
 using Newtonsoft.Json;
 using Course_with_angular.Utils;
+using Microsoft.AspNetCore.Identity;
 
 namespace Course_with_angular.Controllers
 {
@@ -99,10 +100,9 @@ namespace Course_with_angular.Controllers
         }
 
         [HttpGet]
-        public string GetProjects()//int page
+        public string GetProjects()
         {
             var project = db.Projects;
-            //var project = db.Projects.Skip((page - 1) * PageSize).Take(PageSize);
             return JsonConvert.SerializeObject(project);
         }
 
@@ -124,11 +124,11 @@ namespace Course_with_angular.Controllers
             return JsonConvert.SerializeObject(comment);
         }
 
+
         private TagLink FindTagById(int id)
         {
             return db.TagLink.FirstOrDefault(item => item.ProjectId == id);
         }
-
 
 
         [HttpGet]
@@ -136,11 +136,9 @@ namespace Course_with_angular.Controllers
         {
             var tagsLink = FindTagById(id);
             var tmp = db.Tag.FirstOrDefault(p => p.Id == tagsLink.TagId);
-            return JsonConvert.SerializeObject(tmp.Text);     
-            
+            return JsonConvert.SerializeObject(tmp.Text);             
                                   
         }
-
 
 
         public IActionResult Profile()

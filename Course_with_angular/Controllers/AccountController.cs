@@ -65,6 +65,7 @@ namespace Course_with_angular.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
+            Cookies_Model cookie_model = new Cookies_Model();
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -84,7 +85,11 @@ namespace Course_with_angular.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    cookie_model.Language = user.Language;
+                    cookie_model.Theme = user.Theme;
+                    cookie_model.UserName = user.UserName;
+                    cookie_model.AppUserId = user.Id;
+                    return Ok(cookie_model);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -121,12 +126,14 @@ namespace Course_with_angular.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register([FromBody]RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+                
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email,Theme="light",Language = "en" };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

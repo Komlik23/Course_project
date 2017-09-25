@@ -10,8 +10,9 @@ namespace Course_with_angular.Models
     public class ApplicationUser : IdentityUser
     {
         public string Theme { get; set; }
+        public string Language { get; set; }
         public string Passport { get; set; }
         public bool IsValidatedByAdmin { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }       
     }
 }

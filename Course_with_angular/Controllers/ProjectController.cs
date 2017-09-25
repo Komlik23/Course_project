@@ -53,7 +53,8 @@ namespace Course_with_angular.Controllers
         {
             var marks = db.Projects.Select(mark => mark.Rates.OrderByDescending(item => item.Mark)).
                 Take(NewProjectAmount);
-            List<Project_Model> projects = new List<Project_Model>();
+            
+           List<Project_Model> projects = new List<Project_Model>();
             foreach(var pr in marks)
             {
                 foreach(var subpr in pr)
