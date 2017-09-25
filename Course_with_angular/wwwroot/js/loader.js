@@ -12,9 +12,13 @@ app1.controller('loadProjects', function ($scope, $http) {
         var res = $http.get('../Project/GetTopProject').then(
             function (data, status, headers, config) {
                 response = data;
-            
-            $scope.projects = response.data;
-            
+                console.log("Data is below:")
+                console.log(data)
+                $scope.projects = [];
+                console.log("responsedate")
+                console.log(response.data) 
+                
+               
                 continueResp()
             },
             function (data, status, headers, config) {
@@ -27,21 +31,18 @@ app1.controller('loadProjects', function ($scope, $http) {
     loadProjects();
     console.log(response)
     var continueResp = function () {
-        if (projects.length == 0) {
+        if (response.data.length == 0) {
             //document.getElementsByClassName("TopProject")[0].innerHTML+="<p>Sorry,there are no top projects yet:(</p>"
         } else {
-            if (projects.length >= 5) {
+            if (response.data.length >= 5) {
                 for (var i = 0; i < 5; i++) {
-                    projects[i].push(response[i])
-                    console.log(projects[i])
+                    response.data[i].DateOfEnd = response.data[i].DateOfEnd.substr(0, 10);
+                    $scope.projects.push(response.data[i])
                 }
             } else {
-                projects.arr = [{
-                    Id:1
-                }];
-                for (var i = 0; i < response.length; i++) {
-                    projects.arr.push(response[i])
-                    console.log(projects[i])
+                for (var i = 0; i < response.data.length; i++) {
+                    response.data[i].DateOfEnd=response.data[i].DateOfEnd.substr(0, 10);
+                    $scope.projects.push(response.data[i])
                 }
             }
         }
