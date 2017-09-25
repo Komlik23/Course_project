@@ -4,7 +4,7 @@
         'ngRoute',
     ]);
 
-app1.controller('loadTopProjects', function ($scope, $http) {
+app1.controller('loadProjects', function ($scope, $http) {
     var response={};
     var loadProjects = function () {
         var res = $http.get('../Project/GetTopProject').then(
@@ -20,9 +20,9 @@ app1.controller('loadTopProjects', function ($scope, $http) {
         
     };
 
-     getComment = function (ProjectId,pr) {
+     getComment = function (Id,pr) {
         var response;
-        var res = $http.get('GetComment?id='+ProjectId).then(
+        var res = $http.get('Home/GetComment?id='+Id).then(
             function (data, status, headers, config) {
             response = data;
             console.log(data)
@@ -38,13 +38,14 @@ app1.controller('loadTopProjects', function ($scope, $http) {
 
     };
 
-    getTag = function (ProjectId,pr) {
+    getTag = function (Id,pr,i) {
         var response;
-        var res = $http.get('GetTag?id='+ProjectId).then(
+        var res = $http.get('Home/GetTag?id='+Id).then(
             function (data, status, headers, config) {
             response = data;
             console.log(data)
-            pr.tags = response.data;
+            pr.tags = [];
+            pr.tags.push( response.data);
             pr.tagsAmount=response.data.length
                 console.log(pr.tags)
             },
@@ -64,16 +65,16 @@ app1.controller('loadTopProjects', function ($scope, $http) {
             if (response.data.length >= 5) {
                 for (var i = 0; i < 5; i++) {
                     response.data[i].DateOfEnd = response.data[i].DateOfEnd.substr(0, 10);
-                    getComment(response.data[i].ProjectId,response.data[i])
-                    getTag(response.data[last+i].ProjectId,response.data[i])
+                    getComment(response.data[i].Id,response.data[i])
+                    getTag(response.data[i].Id,response.data[i])
                     projects.push(response.data[i])
                     
                 }
             } else {
                 for (var i = 0; i < response.data.length; i++) {
                     response.data[i].DateOfEnd=response.data[i].DateOfEnd.substr(0, 10);
-                    getComment(response.data[i].ProjectId,response.data[i])
-                    getTag(response.data[last+i].ProjectId,response.data[i])
+                    getComment(response.data[i].Id,response.data[i])
+                    getTag(response.data[i].Id,response.data[i])
                     $scope.projects.push(response.data[i])
                 }
             }
@@ -87,16 +88,16 @@ app1.controller('loadTopProjects', function ($scope, $http) {
         var last = $scope.projects[$scope.projects.length - 1];
         if ((response.data.length - $scope.projects.length + 1) >= 10) {
             for (var i = 1; i <= 10; i++) {
-                getComment(response.data[last+i].ProjectId,response.data[i])
-                getTag(response.data[last+i].ProjectId,response.data[i])
+                getComment(response.data[last+i].Id,response.data[i])
+                getTag(response.data[last+i].Id,response.data[i])
                 //$scope.projects.CommentsAmount = response[last + i].Comments.length;
                 $scope.projects.push(response.data[last + i]);
             }
         }
         else {
             for (var i = 1; i <= response.length - 1; i++) {
-                getComment(response.data[last+i].ProjectId,response.data[i])
-                getTag(response.data[last+i].ProjectId,response.data[i])
+                getComment(response.data[last+i].Id,response.data[i])
+                getTag(response.data[last+i].Id,response.data[i])
                 //$scope.projects.CommentsAmount = response[last + i].Comments.length;
                 $scope.projects.push(response.data[last + i]);
             }
@@ -108,7 +109,7 @@ app1.controller('loadTopProjects', function ($scope, $http) {
 app1.controller('loadNewProjects', function ($scope, $http) {
     var response={};
     var loadProjects = function () {
-        var res = $http.get('../Project/GetNewProject').then(
+        var res = $http.get('../Project/GetNewProjects').then(
             function (data, status, headers, config) {
                 response = data;
                 $scope.projects = [];
@@ -121,9 +122,9 @@ app1.controller('loadNewProjects', function ($scope, $http) {
         
     };
 
-     getComment = function (ProjectId,pr) {
+     getComment = function (Id,pr) {
         var response;
-        var res = $http.get('GetComment?id='+ProjectId).then(
+        var res = $http.get('Home/GetComment?id='+Id).then(
             function (data, status, headers, config) {
             response = data;
             console.log(data)
@@ -138,13 +139,14 @@ app1.controller('loadNewProjects', function ($scope, $http) {
        )
 
     };
-    getTag = function (ProjectId,pr) {
+    getTag = function (Id,pr,i) {
         var response;
-        var res = $http.get('GetTag?id='+ProjectId).then(
+        var res = $http.get('Home/GetTag?id='+Id).then(
             function (data, status, headers, config) {
             response = data;
             console.log(data)
-            pr.tags = response.data;
+                pr.tags=[]
+            pr.tags.push( response.data);
             pr.tagsAmount=response.data.length
                 console.log(pr.tags)
             },
@@ -163,16 +165,16 @@ app1.controller('loadNewProjects', function ($scope, $http) {
             if (response.data.length >= 5) {
                 for (var i = 0; i < 5; i++) {
                     response.data[i].DateOfEnd = response.data[i].DateOfEnd.substr(0, 10);
-                    getComment(response.data[i].ProjectId,response.data[i])
-                    getTag(response.data[last+i].ProjectId,response.data[i])
+                    getComment(response.data[i].Id,response.data[i])
+                    getTag(response.data[i].Id,response.data[i],i)
                     $scope.projects.push(response.data[i])
                     
                 }
             } else {
                 for (var i = 0; i < response.data.length; i++) {
                     response.data[i].DateOfEnd=response.data[i].DateOfEnd.substr(0, 10);
-                    getComment(response.data[i].ProjectId,response.data[i])
-                    getTag(response.data[last+i].ProjectId,response.data[i])
+                    getComment(response.data[i].Id,response.data[i])
+                    getTag(response.data[i].Id,response.data[i])
                     $scope.projects.push(response.data[i])
                 }
             }
@@ -186,16 +188,16 @@ app1.controller('loadNewProjects', function ($scope, $http) {
         var last = $scope.projects[$scope.projects.length - 1];
         if ((response.data.length - $scope.projects.length + 1) >= 10) {
             for (var i = 1; i <= 10; i++) {
-                getComment(response.data[last+i].ProjectId,response.data[i])
-                getTag(response.data[last+i].ProjectId,response.data[i])
+                getComment(response.data[last+i].Id,response.data[i])
+                getTag(response.data[last+i].Id,response.data[i])
                 //$scope.projects.CommentsAmount = response[last + i].Comments.length;
                 $scope.projects.push(response.data[last + i]);
             }
         }
         else {
             for (var i = 1; i <= response.data.length - 1; i++) {
-                getComment(response.data[last+i].ProjectId,response.data[i])
-                getTag(response.data[last+i].ProjectId,response.data[i])
+                getComment(response.data[last+i].Id,response.data[i])
+                getTag(response.data[last+i].Id,response.data[i])
                 //$scope.projects.CommentsAmount = response[last + i].Comments.length;
                 $scope.projects.push(response.data[last + i]);
             }
@@ -227,11 +229,11 @@ app1.controller('loadUsers', function ($scope, $http) {var response = {};
     } else{
             if(response.data.length>=5){
                 for(var i=0;i<5;i++){
-                    $scope.users[i].push(response.data[i])
+                    $scope.users.push(response.data[i])
                 }
             } else{
                 for(var i=0;i<response.data.length;i++){
-                    $scope.users[i].push(response.data[i])
+                    $scope.users.push(response.data[i])
                 }
             }
     }
@@ -280,11 +282,11 @@ app1.controller('loadNews', function($scope,$http) {
    } else{
         if(response.length>=5){
             for(var i=0;i<5;i++){
-                $scope.news[i].push(response.data[i])
+                $scope.news.push(response.data[i])
             }
         } else{
             for(var i=0;i<response.data.length;i++){
-                $scope.news[i].push(response.data[i])
+                $scope.news.push(response.data[i])
             }
         }
    }
@@ -310,7 +312,7 @@ app1.controller('loadTags', function($scope,$http) {
     };
       loadTags = function () {
         
-       var res = $http.get('/Get/GetTags').then(
+       var res = $http.get('Home/GetTags').then(
        function (data, status, headers, config) {
            response = data;
            $scope.tags=response.data;

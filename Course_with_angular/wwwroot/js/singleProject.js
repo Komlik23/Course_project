@@ -4,13 +4,17 @@ var getterOfProject = angular.module("course",
         'ngRoute',
     ]);
 getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $http) {
+
+    
+
     getProject = function (ProjectId) {
         var response;
         var res = $http.get('GetSingleProject?id='+ProjectId).then(
             function (data, status, headers, config) {
             response = data;
-            console.log(data)
-            $scope.response = response;
+            
+            $scope.response = response.data;
+            console.log($scope.response)
             getComment(ProjectId)
             },
             function (data, status, headers, config) {
@@ -24,8 +28,10 @@ getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $
             function (data, status, headers, config) {
             response = data;
             console.log(data)
-            $scope.Comments = response.data;
-            $scope.CommentsAmount=$scope.response.data.length
+            $scope.Comments = [];
+            $scope.Comments.push(response.data);
+            console.log(response.data)
+            $scope.CommentsAmount=response.data.length
                 console.log($scope.Comments)
             },
             function (data, status, headers, config) {
@@ -35,19 +41,18 @@ getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $
        )
 
     };
-    var ProjectId = document.getElementById("ProjectId").value;
-    getProject(ProjectId);
+   
     $scope.addComment = function (comment) {
         var date=new Date();
-        comment.ProjectId=ProjectId
-        comment.Author=document.getElementById("UserName").value;
-        comment.Time = date
-        console.log(comment)
+        $scope.comment.ProjectId=ProjectId
+        $scope.comment.Author=document.getElementById("UserName").value;
+        $scope.comment.Time = date
+        console.log($scope.comment)
        var res = $http.post('../Attachment/AddComment',JSON.stringify(comment)).then(
            function (data, status, headers, config) {
            $scope.message = data;
            console.log(data)
-           response.Project.Comments.push(comment);
+           $scope.Comments.push(comment);
        },
        function(data, status, headers, config) {
            console.log("failure message: " + JSON.stringify({ data: data }));
@@ -88,4 +93,10 @@ getterOfProject.controller("getProject", ['$scope', "$http", function ($scope, $
 
     };
 
-};}]);
+    };
+
+    var ProjectId = document.getElementById("ProjectId").value;
+    getProject(ProjectId);
+    console.log("Comments:")
+    console.log($scope.Comments)
+}]);

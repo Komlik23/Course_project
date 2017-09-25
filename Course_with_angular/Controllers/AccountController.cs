@@ -89,7 +89,8 @@ namespace Course_with_angular.Controllers
                     cookie_model.Theme = user.Theme;
                     cookie_model.UserName = user.UserName;
                     cookie_model.AppUserId = user.Id;
-                    return Ok(cookie_model);
+                    ViewBag.ModelCookie = cookie_model.AppUserId;
+                    return RedirectToAction("../Home/Index");
                 }
                 if (result.RequiresTwoFactor)
                 {

@@ -8,6 +8,7 @@ namespace Course_with_angular.Models
 {
     public class Cookies_Model
     {
+        public string Id { get; set; }
         public string AppUserId { get; set; }
         public string UserName { get; set; }
         public string Theme { get; set; }

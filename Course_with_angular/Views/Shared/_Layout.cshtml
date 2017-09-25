@@ -100,14 +100,15 @@
                         </li>
                         <li><a asp-area="" asp-controller="Home" asp-action="About">{{'About' | translate}}</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Projects">{{'Projects'| translate}}</a></li>
+                        
+                        
                         @if( User.IsInRole("admin") )
                         { 
-                        <li><a asp-area="" asp-controller="Admin" asp-action="AdminPage">{{'AdminPage'| translate}}</a></li> 
+                        <li><a asp-area="" asp-controller="Home" asp-action="Admin">{{'AdminPage'| translate}}</a></li> 
                         }
-                        @if(User.IsInRole("admin") || User.IsInRole("user") || User.IsInRole("userConfirmed")) { 
+                        @if(User.IsInRole("admin") || User.IsInRole("user") || User.IsInRole("verified")) { 
                         <li><a asp-area="" asp-controller="Home" asp-action="Profile">{{'Profile'| translate}}</a></li> 
                         } 
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Project">Project</a></li>
                         @await Html.PartialAsync("_LoginPartial")
                     </ul>

@@ -72,7 +72,7 @@
                     <a href="Home/GetProject?id={{project.Id}}"><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
                     <h5 class="title-bg">{{project.Title}}</h5>
                     <p>{{project.Content}}</p>
-                    <button class="btn btn-mini btn-inverse" type="button" ng-click="Home/GetProject?id={{project.Id}}">Read more</button>
+
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
                             <li><i class="icon-calendar"></i>{{project.DateOfEnd}}</li>
@@ -81,8 +81,8 @@
                             <li><i class="icon-tags"></i><i ng-repeat='tag in project.tags'>{{tag.Text}}</i></li>
                         </ul>
                     </div>
-                    <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(projects)">View more</button>
                 </article>
+                <button class="btn btn-mini btn-inverse" type="button" ng-click="loadMore(projects)">View more</button>
             </div>
 
 
@@ -90,11 +90,12 @@
 
             <div class="span8 blog " ng-controller='loadNewProjects'>
                 <h4 class="title-bg span12">NEW PROJECTS</h4>
+                <p style="margin-bottom: 67px;"></p>
                 <article ng-repeat='project in projects' class="clearfix">
                     <a href="Home/GetProject?id={{project.Id}}"><img src="img/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left"></a>
                     <h5 class="title-bg">{{project.Title}}</h5>
                     <p>{{project.Content}}</p>
-                    <button class="btn btn-mini btn-inverse" type="button" ng-click="Home/GetProject?id={{project.Id}}">Read more</button>
+
                     <div class="post-summary-footer">
                         <ul class="post-data-3">
                             <li><i class="icon-calendar"></i>{{project.DateOfEnd}}</li>
@@ -116,7 +117,7 @@
 
     <!-- Scroll to Top -->  
     <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
-
+    <input type="hidden" value="@ViewBag.ModelCookie" id="a1"/>
 
 
 @*<div ng-controller="TestEverything">

@@ -9,6 +9,9 @@ using Course_with_angular.Models;
 using Newtonsoft.Json;
 using Course_with_angular.Utils;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting.Server;
+using System.IO;
+
 
 namespace Course_with_angular.Controllers
 {
@@ -23,13 +26,40 @@ namespace Course_with_angular.Controllers
             db = _db;
         }
 
+        [HttpGet]
+        public string SendProfileSettings()
+        {
+            try
+            {
+                var model = this.GetJson();
+                var cookieModel = JsonConvert.DeserializeObject<Cookies_Model>(model);
+                Cookies_Model cookie = db.CookieModel.Find(cookieModel);
+                if (cookie != null)
+                {
+                    cookie.AppUserId = cookieModel.AppUserId;
+                    cookie.Language = cookieModel.Language;
+                    cookie.Theme = cookieModel.Theme;
+                    cookie.UserName = cookieModel.UserName;
+                    db.CookieModel.Update(cookie);
+                    db.SaveChanges();
+                }
+                return JsonConvert.SerializeObject(ResultModel.Success());
+            }
+
+            catch (Exception e)
+            {
+                return JsonConvert.SerializeObject(ResultModel.Failure(e.Message));
+            }
+        }
+
+        
         [HttpPost]
         public string AddProject()
         {
             string jsonContent = this.GetJson();
             Project_Model project = JsonConvert.DeserializeObject<Project_Model>(jsonContent);
             project.CreatedOn = DateTime.Now;
-           // project.UserId = "e8ed1ddd-2161-4ffc-8f4c-6fb0c5fb6ed4";
+            // project.UserId = "e8ed1ddd-2161-4ffc-8f4c-6fb0c5fb6ed4";
             db.Add(project);
             db.SaveChanges();
             return JsonConvert.SerializeObject(project);
@@ -67,6 +97,7 @@ namespace Course_with_angular.Controllers
                     existingProject.Title = project.Title;
                     existingProject.ImageReference = project.ImageReference;
                     existingProject.UserName = project.UserName;
+
                     db.Update(existingProject);
                     db.SaveChanges();
                 }
@@ -133,10 +164,26 @@ namespace Course_with_angular.Controllers
         [HttpGet]
         public string GetTag(int id)
         {
-            var tagsLink = FindTagById(id);
-            var tmp = db.Tag.FirstOrDefault(p => p.Id == tagsLink.TagId);
-            return JsonConvert.SerializeObject(tmp.Text);             
+            try
+            {
+                var tagsLink = FindTagById(id);
+                var tmp = db.Tag.FirstOrDefault(p => p.Id == tagsLink.TagId);
+                return JsonConvert.SerializeObject(tmp.Text);
+            }
+            catch (Exception e)
+            {
+                return JsonConvert.SerializeObject(ResultModel.Failure(e.Message));
+            }
         }
+
+        [HttpGet]
+        public string GetTags()
+        {
+            return JsonConvert.SerializeObject(db.Tag);  
+           
+        }
+
+
 
 
         public IActionResult Profile()
@@ -161,6 +208,8 @@ namespace Course_with_angular.Controllers
 
         public IActionResult Projects()
         {
+            ApplicationUser user = new ApplicationUser();
+            ViewBag.UserId = "e8ed1ddd-2161-4ffc-8f4c-6fb0c5fb6ed4";
             return View();
         }
 
@@ -181,6 +230,33 @@ namespace Course_with_angular.Controllers
         {
             return View();
         }
+
+        //[HttpPost]
+        //public void Upload()
+        //{
+        //    for (int i = 0; i < Request.Files.Count; i++)
+        //    {
+        //        var file = Request.Files[i];
+
+        //        var fileName = System.IO.Path.GetFileName(file.FileName);
+
+        //        var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
+        //        file.SaveAs(path);
+        //    }
+
+        //}
+
+        [Authorize(Roles ="admin")]
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
+       /* [Authorize]
+        public IActionResult VerifyForm()
+        {
+            return View();
+        }*/
 
         [Authorize(Roles = "admin")]
         public IActionResult About()

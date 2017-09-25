@@ -17,7 +17,8 @@ namespace Course_with_angular.Data
         public DbSet<Tag> Tag { get; set; }
         public DbSet<TagLink> TagLink { get; set; }
         public DbSet<Rate> Rates { get; set; }
-       
+        public DbSet<Cookies_Model> CookieModel { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

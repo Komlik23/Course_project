@@ -18,14 +18,14 @@
             <div class="span6">
                 <h2>{{ response.Title}}</h2>
 
-                <p>{{ response.Conten}}t</p>
+                <p>{{ response.Content}}</p>
 
                 <ul class="project-info">
                     <li><h6>{{"DateOfEnd" | translate}}</h6> {{response.DateOfEnd}}</li>
                     <li><h6>{{"Aims" | translate}}</h6> {{ response.Description}}</li>
                     <li><h6>{{"FinanceAim" | translate}}</h6> {{ response.Project.Finance}} $ </li>
                     <li><h6>{{"FinanceCurrent" | translate}}</h6> {{ response.Project.FinanceCurrent}}</li>
-                    <li><h6>{{"ProjectAuthor" | translate}}</h6> {{ response.Project.Author.Name}}</li>
+                    <li><h6>{{"ProjectAuthor" | translate}}</h6> {{ response.Project.Author}}</li>
                     <li><h6>{{"RateOfProject" | translate}}</h6> {{ response.Project.Rate}}</li>
                     <li>
                         <h6>{{"Tags" | translate}}:</h6><p ng-repeat=" tag in response.Project.Tags">#{{tag}}</p>
@@ -74,14 +74,14 @@
                         <button class="btn btn-large " type="button" ng-click="addComment(comment)">{{"AddComment" | translate}}</button>
                     </div>
                 </form>
-                <clabel ng-if="{{response.Comments.length}}!=0">
-                    <div class="well span8 comment" ng-repeat="comment in response.Comments">
+             @*//   <clabel ng-if="{{Comments.length}}!=0">*@
+                    <div class="well span8 comment" ng-repeat="comment in Comments">
                         <h6 class="title-bg"><small>{{comment.Author}} </small></h6>
                         {{comment.Contain}}
                         <p>{{'COMMENTTIME'| translate}} {{comment.Time}} </p>
                     </div>
-                </clabel>
-                <p ng-if="{{response.Comments.length}}!=0">{{'LEAVECOMMENT' | translate}}</p>
+                @*</clabel>
+             //   <p ng-if="{{response.Comments.length}}!=0">{{'LEAVECOMMENT' | translate}}</p>*@
             </div>
         </div>
     </div>
